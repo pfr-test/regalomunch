@@ -1,19 +1,16 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Una sorpresa para ti ❤️</title>
 
-
     <style>
 
         /* =====================================================
-           ESTILOS GENERALES
+           GENERAL
         ===================================================== */
 
         * {
@@ -23,7 +20,6 @@
         body {
             margin: 0;
             min-height: 100vh;
-
             font-family: Arial, sans-serif;
 
             background: linear-gradient(
@@ -41,7 +37,6 @@
 
         .container {
             background: white;
-
             width: 100%;
             max-width: 850px;
 
@@ -52,11 +47,6 @@
             box-shadow:
                 0 15px 40px rgba(0, 0, 0, 0.15);
         }
-
-
-        /* =====================================================
-           CABECERA
-        ===================================================== */
 
         .header {
             text-align: center;
@@ -71,6 +61,73 @@
         .header p {
             color: #666;
             line-height: 1.5;
+        }
+
+
+        /* =====================================================
+           BOTONES
+        ===================================================== */
+
+        button {
+            width: 100%;
+
+            border: none;
+            border-radius: 12px;
+
+            padding: 15px;
+
+            font-size: 17px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            background: #e75480;
+            color: white;
+
+            transition: 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        #continuar1,
+        #continuar2,
+        #continuar3,
+        #continuar4 {
+            display: none;
+            margin-top: 15px;
+            background: #28a745;
+        }
+
+
+        /* =====================================================
+           RESULTADOS
+        ===================================================== */
+
+        #resultado1,
+        #resultado3,
+        #resultado4 {
+            display: none;
+
+            text-align: center;
+
+            margin-top: 20px;
+
+            padding: 18px;
+
+            border-radius: 15px;
+        }
+
+        .correcto {
+            background: #e8f8ee;
+            color: #218838;
+        }
+
+        .incorrecto {
+            background: #fff0f0;
+            color: #c62828;
         }
 
 
@@ -115,75 +172,6 @@
 
         .option input {
             margin-right: 8px;
-        }
-
-
-        /* =====================================================
-           BOTONES
-        ===================================================== */
-
-        button {
-            width: 100%;
-
-            border: none;
-            border-radius: 12px;
-
-            padding: 15px;
-
-            font-size: 17px;
-            font-weight: bold;
-
-            cursor: pointer;
-
-            background: #e75480;
-            color: white;
-
-            transition: 0.2s;
-        }
-
-        button:hover {
-            transform: translateY(-2px);
-            opacity: 0.9;
-        }
-
-        #continuar1,
-        #continuar2,
-        #continuar3,
-        #continuar4 {
-            display: none;
-
-            margin-top: 15px;
-
-            background: #28a745;
-        }
-
-
-        /* =====================================================
-           RESULTADOS
-        ===================================================== */
-
-        #resultado1,
-        #resultado3,
-        #resultado4 {
-            display: none;
-
-            text-align: center;
-
-            margin-top: 20px;
-
-            padding: 18px;
-
-            border-radius: 15px;
-        }
-
-        .correcto {
-            background: #e8f8ee;
-            color: #218838;
-        }
-
-        .incorrecto {
-            background: #fff0f0;
-            color: #c62828;
         }
 
 
@@ -235,28 +223,24 @@
 
 
         /* =====================================================
-           TABLERO
+           TABLERO QUEENS
         ===================================================== */
 
         .board-container {
             display: flex;
-
             justify-content: center;
             align-items: center;
 
-            margin: 25px 0;
-
             width: 100%;
+
+            margin: 25px 0;
         }
 
         .board {
             display: grid;
 
-            grid-template-columns:
-                repeat(6, 1fr);
-
-            grid-template-rows:
-                repeat(6, 1fr);
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: repeat(6, 1fr);
 
             width: min(90vw, 570px);
 
@@ -277,8 +261,6 @@
         ===================================================== */
 
         .cell {
-            position: relative;
-
             width: 100%;
             height: 100%;
 
@@ -286,15 +268,12 @@
             min-height: 0;
 
             display: flex;
-
             justify-content: center;
             align-items: center;
 
-            border:
-                2px solid rgba(0, 0, 0, 0.22);
+            border: 2px solid rgba(0, 0, 0, 0.22);
 
-            font-size:
-                clamp(25px, 5vw, 48px);
+            font-size: clamp(25px, 5vw, 48px);
 
             line-height: 1;
 
@@ -302,8 +281,7 @@
 
             user-select: none;
 
-            transition:
-                filter 0.15s ease;
+            transition: filter 0.15s ease;
 
             overflow: hidden;
         }
@@ -349,8 +327,7 @@
         .x {
             color: #202020;
 
-            font-size:
-                clamp(22px, 4vw, 38px);
+            font-size: clamp(22px, 4vw, 38px);
 
             font-weight: 900;
 
@@ -358,7 +335,6 @@
             height: 100%;
 
             display: flex;
-
             justify-content: center;
             align-items: center;
 
@@ -371,21 +347,18 @@
         ===================================================== */
 
         .queen {
-            font-size:
-                clamp(27px, 5vw, 48px);
+            font-size: clamp(27px, 5vw, 48px);
 
             width: 100%;
             height: 100%;
 
             display: flex;
-
             justify-content: center;
             align-items: center;
 
             line-height: 1;
 
-            animation:
-                aparecer 0.15s ease;
+            animation: aparecer 0.15s ease;
         }
 
         @keyframes aparecer {
@@ -451,7 +424,7 @@
 
 
         /* =====================================================
-           VICTORIA
+           VICTORIA PRUEBA 2
         ===================================================== */
 
         #victoria {
@@ -490,8 +463,7 @@
 
             padding: 14px;
 
-            border:
-                2px solid #ddd;
+            border: 2px solid #ddd;
 
             border-radius: 12px;
 
@@ -533,11 +505,6 @@
             line-height: 1.6;
         }
 
-
-        /* =====================================================
-           TABLERO DE FOTOS
-        ===================================================== */
-
         .photo-board {
             display: flex;
 
@@ -548,11 +515,6 @@
             margin: 25px 0;
         }
 
-
-        /* =====================================================
-           TARJETAS DE FOTOS
-        ===================================================== */
-
         .photo-card {
             display: flex;
 
@@ -562,8 +524,7 @@
 
             background: white;
 
-            border:
-                3px solid #ddd;
+            border: 3px solid #ddd;
 
             border-radius: 15px;
 
@@ -583,8 +544,7 @@
             border-color: #e75480;
 
             box-shadow:
-                0 5px 15px
-                rgba(0, 0, 0, 0.1);
+                0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .photo-card.dragging {
@@ -596,11 +556,6 @@
         .photo-card.correct-position {
             border-color: #28a745;
         }
-
-
-        /* =====================================================
-           NÚMERO DE FOTO
-        ===================================================== */
 
         .photo-number {
             width: 38px;
@@ -624,11 +579,6 @@
             font-size: 18px;
         }
 
-
-        /* =====================================================
-           IMÁGENES
-        ===================================================== */
-
         .photo-card img {
             width: 150px;
             height: 100px;
@@ -646,11 +596,6 @@
             font-weight: bold;
             color: #444;
         }
-
-
-        /* =====================================================
-           BOTONES DE LAS FOTOS
-        ===================================================== */
 
         .photo-buttons {
             display: flex;
@@ -700,7 +645,6 @@
 
             .board {
                 width: min(92vw, 500px);
-
                 border-width: 4px;
             }
 
@@ -1074,7 +1018,8 @@
                 </li>
 
                 <li>
-                    Haz clic una vez para ❌, otra vez para 👑
+                    Haz clic una vez para ❌,
+                    otra vez para 👑
                     y otra vez para limpiar.
                 </li>
 
@@ -1290,8 +1235,8 @@
             <ul>
 
                 <li>
-                    📸 Ordena las 6 fotos desde la más antigua
-                    hasta la más reciente.
+                    📸 Ordena las 6 fotos de la más antigua
+                    a la más reciente.
                 </li>
 
                 <li>
@@ -1343,847 +1288,792 @@
 
 <script>
 
+    /* =====================================================
+       PRUEBA 1
+    ===================================================== */
 
-/* =========================================================
-   PRUEBA 1
-========================================================= */
-
-const respuestasCorrectas = {
-
-    pregunta1: "a",
-    pregunta2: "b",
-    pregunta3: "c",
-    pregunta4: "a",
-    pregunta5: "b"
-
-};
+    const respuestasCorrectas = {
+        pregunta1: "a",
+        pregunta2: "b",
+        pregunta3: "c",
+        pregunta4: "a",
+        pregunta5: "b"
+    };
 
 
-function comprobarRespuestas() {
+    function comprobarRespuestas() {
 
-    let aciertos = 0;
+        let aciertos = 0;
 
-    for (
-        let pregunta in respuestasCorrectas
-    ) {
+        for (let pregunta in respuestasCorrectas) {
 
-        const respuesta =
-            document.querySelector(
-                `input[name="${pregunta}"]:checked`
-            );
+            const respuesta =
+                document.querySelector(
+                    `input[name="${pregunta}"]:checked`
+                );
 
-        if (
-            respuesta &&
-            respuesta.value ===
-            respuestasCorrectas[pregunta]
-        ) {
-
-            aciertos++;
-
+            if (
+                respuesta &&
+                respuesta.value ===
+                respuestasCorrectas[pregunta]
+            ) {
+                aciertos++;
+            }
         }
 
+
+        const resultado =
+            document.getElementById("resultado1");
+
+        const continuar =
+            document.getElementById("continuar1");
+
+
+        resultado.style.display = "block";
+
+
+        if (aciertos === 5) {
+
+            resultado.className = "correcto";
+
+            resultado.innerHTML = `
+                <h2>🎉 ¡PERFECTO! 🎉</h2>
+
+                <p>
+                    Has acertado las 5 preguntas.
+                </p>
+
+                <p>
+                    Pero esto solo acaba de empezar... 👀
+                </p>
+            `;
+
+            continuar.style.display = "block";
+
+        } else {
+
+            resultado.className = "incorrecto";
+
+            resultado.innerHTML = `
+                <h2>❌ Todavía no...</h2>
+
+                <p>
+                    Has acertado
+                    <strong>${aciertos}/5</strong>.
+                </p>
+
+                <p>
+                    Necesitas acertarlas todas
+                    para continuar ❤️
+                </p>
+            `;
+
+            continuar.style.display = "none";
+        }
     }
 
 
-    const resultado =
-        document.getElementById("resultado1");
 
-    const continuar =
-        document.getElementById("continuar1");
+    /* =====================================================
+       PASAR A PRUEBA 2
+    ===================================================== */
 
+    function mostrarPrueba2() {
 
-    resultado.style.display = "block";
+        document.getElementById("prueba1").style.display = "none";
 
+        document.getElementById("prueba2").style.display = "block";
 
-    if (aciertos === 5) {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
 
-        resultado.className = "correcto";
-
-        resultado.innerHTML = `
-
-            <h2>🎉 ¡PERFECTO! 🎉</h2>
-
-            <p>
-                Has acertado las 5 preguntas.
-            </p>
-
-            <p>
-                Pero esto solo acaba de empezar... 👀
-            </p>
-
-        `;
-
-        continuar.style.display = "block";
-
+        crearTablero();
     }
 
-    else {
 
-        resultado.className = "incorrecto";
 
-        resultado.innerHTML = `
+    /* =====================================================
+       PRUEBA 2 - QUEENS
+    ===================================================== */
 
-            <h2>❌ Todavía no...</h2>
+    const regiones = [
 
-            <p>
-                Has acertado
-                <strong>${aciertos}/5</strong>.
-            </p>
+        [0, 0, 1, 1, 2, 2],
 
-            <p>
-                Necesitas acertarlas todas para continuar ❤️
-            </p>
+        [0, 0, 1, 2, 2, 2],
 
-        `;
+        [3, 3, 1, 1, 2, 2],
 
-        continuar.style.display = "none";
+        [3, 3, 4, 4, 4, 5],
 
+        [3, 4, 4, 4, 5, 5],
+
+        [4, 4, 4, 5, 5, 5]
+
+    ];
+
+
+    let estado = [];
+
+
+
+    /* =====================================================
+       CREAR TABLERO
+    ===================================================== */
+
+    function crearTablero() {
+
+        const board =
+            document.getElementById("board");
+
+        board.innerHTML = "";
+
+        estado = [];
+
+
+        for (let fila = 0; fila < 6; fila++) {
+
+            estado[fila] = [];
+
+
+            for (
+                let columna = 0;
+                columna < 6;
+                columna++
+            ) {
+
+                estado[fila][columna] = 0;
+
+
+                const celda =
+                    document.createElement("div");
+
+
+                celda.className =
+                    "cell region" +
+                    regiones[fila][columna];
+
+
+                celda.addEventListener(
+                    "click",
+                    function () {
+
+                        cambiarCasilla(
+                            fila,
+                            columna
+                        );
+
+                    }
+                );
+
+
+                board.appendChild(celda);
+            }
+        }
+
+
+        actualizarTablero();
     }
 
-}
 
 
-/* =========================================================
-   PASAR A PRUEBA 2
-========================================================= */
+    /* =====================================================
+       CAMBIAR CASILLA
+    ===================================================== */
 
-function mostrarPrueba2() {
-
-    document.getElementById("prueba1")
-        .style.display = "none";
-
-    document.getElementById("prueba2")
-        .style.display = "block";
-
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-
-    crearTablero();
-
-}
-
-
-/* =========================================================
-   PRUEBA 2 - QUEENS MASTER
-========================================================= */
-
-const regiones = [
-
-    [0, 0, 1, 1, 2, 2],
-
-    [0, 0, 1, 2, 2, 2],
-
-    [3, 3, 1, 1, 2, 2],
-
-    [3, 3, 4, 4, 4, 5],
-
-    [3, 4, 4, 4, 5, 5],
-
-    [4, 4, 4, 5, 5, 5]
-
-];
-
-
-let estado = [];
-
-
-/* =========================================================
-   CREAR TABLERO
-========================================================= */
-
-function crearTablero() {
-
-    const board =
-        document.getElementById("board");
-
-
-    board.innerHTML = "";
-
-    estado = [];
-
-
-    for (
-        let fila = 0;
-        fila < 6;
-        fila++
+    function cambiarCasilla(
+        fila,
+        columna
     ) {
 
-        estado[fila] = [];
+        estado[fila][columna]++;
 
 
-        for (
-            let columna = 0;
-            columna < 6;
-            columna++
+        if (
+            estado[fila][columna] > 2
         ) {
 
             estado[fila][columna] = 0;
 
-
-            const celda =
-                document.createElement("div");
+        }
 
 
-            celda.className =
-                "cell region" +
-                regiones[fila][columna];
+        actualizarTablero();
+
+        comprobarTablero();
+    }
 
 
-            celda.dataset.fila = fila;
 
-            celda.dataset.columna = columna;
+    /* =====================================================
+       ACTUALIZAR TABLERO
+    ===================================================== */
+
+    function actualizarTablero() {
+
+        const celdas =
+            document.querySelectorAll(".cell");
 
 
-            celda.addEventListener(
-                "click",
-                () => {
+        let contadorReinas = 0;
 
-                    cambiarCasilla(
-                        fila,
-                        columna
-                    );
+        let contadorX = 0;
 
+
+        celdas.forEach(
+            function (celda, indice) {
+
+                const fila =
+                    Math.floor(indice / 6);
+
+                const columna =
+                    indice % 6;
+
+
+                celda.innerHTML = "";
+
+                celda.classList.remove(
+                    "x",
+                    "queen",
+                    "conflict"
+                );
+
+
+                if (
+                    estado[fila][columna] === 1
+                ) {
+
+                    celda.innerHTML = "×";
+
+                    celda.classList.add("x");
+
+                    contadorX++;
                 }
-            );
 
 
-            board.appendChild(celda);
+                if (
+                    estado[fila][columna] === 2
+                ) {
 
-        }
+                    celda.innerHTML = "👑";
 
+                    celda.classList.add("queen");
+
+                    contadorReinas++;
+                }
+
+            }
+        );
+
+
+        document.getElementById(
+            "contador"
+        ).textContent = contadorReinas;
+
+
+        document.getElementById(
+            "marcadas"
+        ).textContent = contadorX;
     }
 
 
-    actualizarTablero();
 
-}
+    /* =====================================================
+       COMPROBAR TABLERO
+    ===================================================== */
 
+    function comprobarTablero() {
 
-/* =========================================================
-   CAMBIAR CASILLA
-========================================================= */
-
-function cambiarCasilla(
-    fila,
-    columna
-) {
-
-    estado[fila][columna]++;
+        const reinas = [];
 
 
-    if (
-        estado[fila][columna] > 2
-    ) {
+        for (let fila = 0; fila < 6; fila++) {
 
-        estado[fila][columna] = 0;
-
-    }
-
-
-    actualizarTablero();
-
-    comprobarTablero();
-
-}
-
-
-/* =========================================================
-   ACTUALIZAR TABLERO
-========================================================= */
-
-function actualizarTablero() {
-
-    const celdas =
-        document.querySelectorAll(".cell");
-
-
-    let contadorReinas = 0;
-
-    let contadorX = 0;
-
-
-    celdas.forEach(
-        (celda, indice) => {
-
-            const fila =
-                Math.floor(indice / 6);
-
-            const columna =
-                indice % 6;
-
-
-            celda.innerHTML = "";
-
-            celda.classList.remove(
-                "conflict"
-            );
-
-
-            if (
-                estado[fila][columna] === 1
+            for (
+                let columna = 0;
+                columna < 6;
+                columna++
             ) {
 
-                celda.innerHTML = "×";
+                if (
+                    estado[fila][columna] === 2
+                ) {
 
-                celda.classList.add("x");
-
-                contadorX++;
-
+                    reinas.push({
+                        fila: fila,
+                        columna: columna
+                    });
+                }
             }
-
-
-            if (
-                estado[fila][columna] === 2
-            ) {
-
-                celda.innerHTML = "👑";
-
-                celda.classList.add("queen");
-
-                contadorReinas++;
-
-            }
-
         }
-    );
 
 
-    document.getElementById(
-        "contador"
-    ).textContent = contadorReinas;
+        let hayConflicto = false;
 
-
-    document.getElementById(
-        "marcadas"
-    ).textContent = contadorX;
-
-}
-
-
-/* =========================================================
-   COMPROBAR TABLERO
-========================================================= */
-
-function comprobarTablero() {
-
-    const reinas = [];
-
-
-    for (
-        let fila = 0;
-        fila < 6;
-        fila++
-    ) {
 
         for (
-            let columna = 0;
-            columna < 6;
-            columna++
+            let i = 0;
+            i < reinas.length;
+            i++
         ) {
 
-            if (
-                estado[fila][columna] === 2
+            for (
+                let j = i + 1;
+                j < reinas.length;
+                j++
             ) {
 
-                reinas.push({
-                    fila: fila,
-                    columna: columna
-                });
+                const a = reinas[i];
+
+                const b = reinas[j];
+
+
+                /*
+                    MISMA FILA
+                */
+
+                if (
+                    a.fila === b.fila
+                ) {
+
+                    hayConflicto = true;
+
+                    marcarConflicto(a, b);
+                }
+
+
+                /*
+                    MISMA COLUMNA
+                */
+
+                if (
+                    a.columna === b.columna
+                ) {
+
+                    hayConflicto = true;
+
+                    marcarConflicto(a, b);
+                }
+
+
+                /*
+                    MISMA REGIÓN
+                */
+
+                if (
+                    regiones[a.fila][a.columna] ===
+                    regiones[b.fila][b.columna]
+                ) {
+
+                    hayConflicto = true;
+
+                    marcarConflicto(a, b);
+                }
+
+
+                /*
+                    LAS REINAS NO PUEDEN TOCARSE
+                    EN DIAGONAL
+                */
+
+                if (
+                    Math.abs(
+                        a.fila - b.fila
+                    ) === 1 &&
+
+                    Math.abs(
+                        a.columna - b.columna
+                    ) === 1
+                ) {
+
+                    hayConflicto = true;
+
+                    marcarConflicto(a, b);
+                }
+
+
+                /*
+                    TAMPOCO PUEDEN TOCARSE
+                    HORIZONTAL O VERTICALMENTE
+                */
+
+                if (
+                    Math.abs(
+                        a.fila - b.fila
+                    ) <= 1 &&
+
+                    Math.abs(
+                        a.columna - b.columna
+                    ) <= 1 &&
+
+                    (
+                        a.fila !== b.fila ||
+                        a.columna !== b.columna
+                    )
+                ) {
+
+                    hayConflicto = true;
+
+                    marcarConflicto(a, b);
+                }
 
             }
-
         }
 
-    }
 
-
-    let hayConflicto = false;
-
-
-    for (
-        let i = 0;
-        i < reinas.length;
-        i++
-    ) {
-
-        for (
-            let j = i + 1;
-            j < reinas.length;
-            j++
-        ) {
-
-            const a = reinas[i];
-
-            const b = reinas[j];
-
-
-            /* MISMA FILA */
-
-            if (
-                a.fila === b.fila
-            ) {
-
-                hayConflicto = true;
-
-                marcarConflicto(a, b);
-
-            }
-
-
-            /* MISMA COLUMNA */
-
-            if (
-                a.columna === b.columna
-            ) {
-
-                hayConflicto = true;
-
-                marcarConflicto(a, b);
-
-            }
-
-
-            /* MISMA REGIÓN */
-
-            if (
-                regiones[a.fila][a.columna] ===
-                regiones[b.fila][b.columna]
-            ) {
-
-                hayConflicto = true;
-
-                marcarConflicto(a, b);
-
-            }
-
-
-            /*
-                LAS REINAS NO PUEDEN TOCARSE
-                EN DIAGONAL
-            */
-
-            if (
-                Math.abs(
-                    a.fila - b.fila
-                ) === 1 &&
-
-                Math.abs(
-                    a.columna - b.columna
-                ) === 1
-            ) {
-
-                hayConflicto = true;
-
-                marcarConflicto(a, b);
-
-            }
-
-
-            /*
-                NO PUEDEN TOCARSE
-                HORIZONTAL O VERTICALMENTE
-            */
-
-            if (
-                Math.abs(
-                    a.fila - b.fila
-                ) <= 1 &&
-
-                Math.abs(
-                    a.columna - b.columna
-                ) <= 1 &&
-
-                (
-                    a.fila !== b.fila ||
-                    a.columna !== b.columna
-                )
-            ) {
-
-                hayConflicto = true;
-
-                marcarConflicto(a, b);
-
-            }
-
-        }
-
-    }
-
-
-    const mensaje =
-        document.getElementById(
-            "mensajeJuego"
-        );
-
-
-    if (hayConflicto) {
-
-        mensaje.textContent =
-            "❌ Hay una o más reinas en conflicto.";
-
-        mensaje.style.color =
-            "#c62828";
-
-        return;
-
-    }
-
-
-    if (reinas.length < 6) {
-
-        mensaje.textContent =
-            "🧠 Sigue pensando...";
-
-        mensaje.style.color =
-            "#666";
-
-        return;
-
-    }
-
-
-    const regionesUsadas =
-        new Set();
-
-    const filasUsadas =
-        new Set();
-
-    const columnasUsadas =
-        new Set();
-
-
-    reinas.forEach(
-        reina => {
-
-            regionesUsadas.add(
-                regiones[
-                    reina.fila
-                ][
-                    reina.columna
-                ]
-            );
-
-            filasUsadas.add(
-                reina.fila
-            );
-
-            columnasUsadas.add(
-                reina.columna
-            );
-
-        }
-    );
-
-
-    if (
-        regionesUsadas.size === 6 &&
-        filasUsadas.size === 6 &&
-        columnasUsadas.size === 6
-    ) {
-
-        ganarJuego();
-
-    }
-
-}
-
-
-/* =========================================================
-   MARCAR CONFLICTO
-========================================================= */
-
-function marcarConflicto(
-    a,
-    b
-) {
-
-    const indiceA =
-        a.fila * 6 +
-        a.columna;
-
-
-    const indiceB =
-        b.fila * 6 +
-        b.columna;
-
-
-    const celdas =
-        document.querySelectorAll(
-            ".cell"
-        );
-
-
-    celdas[indiceA]
-        .classList.add("conflict");
-
-
-    celdas[indiceB]
-        .classList.add("conflict");
-
-}
-
-
-/* =========================================================
-   GANAR PRUEBA 2
-========================================================= */
-
-function ganarJuego() {
-
-    const mensaje =
-        document.getElementById(
-            "mensajeJuego"
-        );
-
-
-    mensaje.textContent =
-        "🎉 ¡TABLERO COMPLETADO! 🎉";
-
-
-    mensaje.style.color =
-        "#218838";
-
-
-    document.getElementById(
-        "victoria"
-    ).style.display = "block";
-
-
-    document.getElementById(
-        "continuar2"
-    ).style.display = "block";
-
-
-    const celdas =
-        document.querySelectorAll(
-            ".cell"
-        );
-
-
-    celdas.forEach(
-        celda => {
-
-            celda.style.pointerEvents =
-                "none";
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   REINICIAR TABLERO
-========================================================= */
-
-function reiniciarJuego() {
-
-    document.getElementById(
-        "victoria"
-    ).style.display = "none";
-
-
-    document.getElementById(
-        "mensajeJuego"
-    ).textContent = "";
-
-
-    crearTablero();
-
-}
-
-
-/* =========================================================
-   PASAR A PRUEBA 3
-========================================================= */
-
-function mostrarPrueba3() {
-
-    document.getElementById(
-        "prueba2"
-    ).style.display = "none";
-
-
-    document.getElementById(
-        "prueba3"
-    ).style.display = "block";
-
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-}
-
-
-/* =========================================================
-   PRUEBA 3 - RESPUESTAS
-========================================================= */
-
-
-/*
-    CAMBIA ESTAS RESPUESTAS POR LAS TUYAS.
-*/
-
-const respuestasPrueba3 = {
-
-    respuesta1: "barcelona",
-
-    respuesta2: "toy story",
-
-    respuesta3: "azul",
-
-    respuesta4: "paris"
-
-};
-
-
-function normalizarRespuesta(
-    texto
-) {
-
-    return texto
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(
-            /[\u0300-\u036f]/g,
-            ""
-        )
-        .trim();
-
-}
-
-
-function comprobarRespuestas3() {
-
-    let aciertos = 0;
-
-
-    for (
-        let pregunta in
-        respuestasPrueba3
-    ) {
-
-        const input =
+        const mensaje =
             document.getElementById(
-                pregunta
+                "mensajeJuego"
             );
 
 
-        const respuestaUsuario =
-            normalizarRespuesta(
-                input.value
-            );
+        if (hayConflicto) {
+
+            mensaje.textContent =
+                "❌ Hay una o más reinas en conflicto.";
+
+            mensaje.style.color = "#c62828";
+
+            return;
+        }
 
 
-        const respuestaCorrecta =
-            normalizarRespuesta(
-                respuestasPrueba3[
-                    pregunta
-                ]
-            );
+        if (reinas.length < 6) {
+
+            mensaje.textContent =
+                "🧠 Sigue pensando...";
+
+            mensaje.style.color = "#666";
+
+            return;
+        }
+
+
+        /*
+            Comprobar filas,
+            columnas y regiones.
+        */
+
+        const filasUsadas = new Set();
+
+        const columnasUsadas = new Set();
+
+        const regionesUsadas = new Set();
+
+
+        reinas.forEach(
+            function (reina) {
+
+                filasUsadas.add(
+                    reina.fila
+                );
+
+                columnasUsadas.add(
+                    reina.columna
+                );
+
+                regionesUsadas.add(
+                    regiones[
+                        reina.fila
+                    ][
+                        reina.columna
+                    ]
+                );
+            }
+        );
 
 
         if (
-            respuestaUsuario ===
-            respuestaCorrecta
+            filasUsadas.size === 6 &&
+            columnasUsadas.size === 6 &&
+            regionesUsadas.size === 6
         ) {
 
-            aciertos++;
+            ganarJuego();
+        }
+    }
 
+
+
+    /* =====================================================
+       MARCAR CONFLICTO
+    ===================================================== */
+
+    function marcarConflicto(a, b) {
+
+        const indiceA =
+            a.fila * 6 +
+            a.columna;
+
+
+        const indiceB =
+            b.fila * 6 +
+            b.columna;
+
+
+        const celdas =
+            document.querySelectorAll(
+                ".cell"
+            );
+
+
+        celdas[indiceA]
+            .classList.add("conflict");
+
+
+        celdas[indiceB]
+            .classList.add("conflict");
+    }
+
+
+
+    /* =====================================================
+       GANAR PRUEBA 2
+    ===================================================== */
+
+    function ganarJuego() {
+
+        const mensaje =
+            document.getElementById(
+                "mensajeJuego"
+            );
+
+
+        mensaje.textContent =
+            "🎉 ¡TABLERO COMPLETADO! 🎉";
+
+
+        mensaje.style.color =
+            "#218838";
+
+
+        document.getElementById(
+            "victoria"
+        ).style.display = "block";
+
+
+        document.getElementById(
+            "continuar2"
+        ).style.display = "block";
+
+
+        const celdas =
+            document.querySelectorAll(
+                ".cell"
+            );
+
+
+        celdas.forEach(
+            function (celda) {
+
+                celda.style.pointerEvents =
+                    "none";
+            }
+        );
+    }
+
+
+
+    /* =====================================================
+       REINICIAR TABLERO
+    ===================================================== */
+
+    function reiniciarJuego() {
+
+        document.getElementById(
+            "victoria"
+        ).style.display = "none";
+
+
+        document.getElementById(
+            "mensajeJuego"
+        ).textContent = "";
+
+
+        crearTablero();
+    }
+
+
+
+    /* =====================================================
+       PASAR A PRUEBA 3
+    ===================================================== */
+
+    function mostrarPrueba3() {
+
+        document.getElementById(
+            "prueba2"
+        ).style.display = "none";
+
+
+        document.getElementById(
+            "prueba3"
+        ).style.display = "block";
+
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+
+
+    /* =====================================================
+       PRUEBA 3 - RESPUESTAS
+    ===================================================== */
+
+    /*
+        CAMBIA ESTAS RESPUESTAS POR LAS TUYAS.
+    */
+
+    const respuestasPrueba3 = {
+
+        respuesta1: "barcelona",
+
+        respuesta2: "toy story",
+
+        respuesta3: "azul",
+
+        respuesta4: "paris"
+
+    };
+
+
+    function normalizarRespuesta(texto) {
+
+        return texto
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(
+                /[\u0300-\u036f]/g,
+                ""
+            )
+            .trim();
+    }
+
+
+
+    function comprobarRespuestas3() {
+
+        let aciertos = 0;
+
+
+        for (
+            let pregunta in
+            respuestasPrueba3
+        ) {
+
+            const input =
+                document.getElementById(
+                    pregunta
+                );
+
+
+            const respuestaUsuario =
+                normalizarRespuesta(
+                    input.value
+                );
+
+
+            const respuestaCorrecta =
+                normalizarRespuesta(
+                    respuestasPrueba3[
+                        pregunta
+                    ]
+                );
+
+
+            if (
+                respuestaUsuario ===
+                respuestaCorrecta
+            ) {
+
+                aciertos++;
+            }
         }
 
-    }
+
+        const resultado =
+            document.getElementById(
+                "resultado3"
+            );
 
 
-    const resultado =
-        document.getElementById(
-            "resultado3"
-        );
+        const continuar =
+            document.getElementById(
+                "continuar3"
+            );
 
 
-    const continuar =
-        document.getElementById(
-            "continuar3"
-        );
-
-
-    resultado.style.display =
-        "block";
-
-
-    if (
-        aciertos === 4
-    ) {
-
-        resultado.className =
-            "correcto";
-
-
-        resultado.innerHTML = `
-
-            <h2>🎉 ¡INCREÍBLE! 🎉</h2>
-
-            <p>
-                Has acertado las
-                <strong>4 preguntas</strong>.
-            </p>
-
-            <p>
-                Ya estás muy cerca del final... 👀❤️
-            </p>
-
-        `;
-
-
-        continuar.style.display =
+        resultado.style.display =
             "block";
 
+
+        if (aciertos === 4) {
+
+            resultado.className =
+                "correcto";
+
+
+            resultado.innerHTML = `
+
+                <h2>🎉 ¡INCREÍBLE! 🎉</h2>
+
+                <p>
+                    Has acertado las
+                    <strong>4 preguntas</strong>.
+                </p>
+
+                <p>
+                    Ya estás muy cerca del final... 👀❤️
+                </p>
+
+            `;
+
+
+            continuar.style.display =
+                "block";
+
+        } else {
+
+            resultado.className =
+                "incorrecto";
+
+
+            resultado.innerHTML = `
+
+                <h2>❌ Casi...</h2>
+
+                <p>
+                    Has acertado
+                    <strong>${aciertos}/4</strong>.
+                </p>
+
+                <p>
+                    Tienes que acertarlas todas
+                    para continuar ❤️
+                </p>
+
+            `;
+
+
+            continuar.style.display =
+                "none";
+        }
     }
 
-    else {
-
-        resultado.className =
-            "incorrecto";
 
 
-        resultado.innerHTML = `
+    /* =====================================================
+       PRUEBA 4 - FOTOS
+    ===================================================== */
 
-            <h2>❌ Casi...</h2>
-
-            <p>
-                Has acertado
-                <strong>${aciertos}/4</strong>.
-            </p>
-
-            <p>
-                Tienes que acertarlas todas
-                para continuar ❤️
-            </p>
-
-        `;
-
-
-        continuar.style.display =
-            "none";
-
-    }
-
-}
-
-
-/* =========================================================
-   PRUEBA 4 - FOTOS
-========================================================= */
-
-
-/*
-    COLOCA ESTAS 6 FOTOS EN LA MISMA
-    CARPETA QUE EL HTML:
+    /*
+        COLOCA LAS FOTOS EN LA MISMA CARPETA
+        QUE ESTE ARCHIVO:
 
         foto1.jpg
         foto2.jpg
@@ -2192,552 +2082,504 @@ function comprobarRespuestas3() {
         foto5.jpg
         foto6.jpg
 
+        El orden correcto será:
 
-    El orden correcto será:
-
-        foto1
-        foto2
-        foto3
-        foto4
-        foto5
-        foto6
-*/
-
-const fotos = [
-
-    {
-        id: 1,
-        imagen: "foto1.jpg",
-        titulo: "Recuerdo 1"
-    },
-
-    {
-        id: 2,
-        imagen: "foto2.jpg",
-        titulo: "Recuerdo 2"
-    },
-
-    {
-        id: 3,
-        imagen: "foto3.jpg",
-        titulo: "Recuerdo 3"
-    },
-
-    {
-        id: 4,
-        imagen: "foto4.jpg",
-        titulo: "Recuerdo 4"
-    },
-
-    {
-        id: 5,
-        imagen: "foto5.jpg",
-        titulo: "Recuerdo 5"
-    },
-
-    {
-        id: 6,
-        imagen: "foto6.jpg",
-        titulo: "Recuerdo 6"
-    }
-
-];
-
-
-let ordenFotos = [];
-
-let elementoArrastrado = null;
-
-
-/* =========================================================
-   PASAR A PRUEBA 4
-========================================================= */
-
-function mostrarPrueba4() {
-
-    document.getElementById(
-        "prueba3"
-    ).style.display = "none";
-
-
-    document.getElementById(
-        "prueba4"
-    ).style.display = "block";
-
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-
-    crearFotos();
-
-}
-
-
-/* =========================================================
-   CREAR FOTOS
-========================================================= */
-
-function crearFotos() {
-
-    const photoBoard =
-        document.getElementById(
-            "photoBoard"
-        );
-
-
-    photoBoard.innerHTML = "";
-
-
-    ordenFotos =
-        [...fotos];
-
-
-    /*
-        Mezclar aleatoriamente.
+        foto1 → foto2 → foto3 → foto4 → foto5 → foto6
     */
 
-    ordenFotos.sort(
-        () =>
-            Math.random() - 0.5
-    );
+    const fotos = [
+
+        {
+            id: 1,
+            imagen: "foto1.jpg",
+            titulo: "Recuerdo 1"
+        },
+
+        {
+            id: 2,
+            imagen: "foto2.jpg",
+            titulo: "Recuerdo 2"
+        },
+
+        {
+            id: 3,
+            imagen: "foto3.jpg",
+            titulo: "Recuerdo 3"
+        },
+
+        {
+            id: 4,
+            imagen: "foto4.jpg",
+            titulo: "Recuerdo 4"
+        },
+
+        {
+            id: 5,
+            imagen: "foto5.jpg",
+            titulo: "Recuerdo 5"
+        },
+
+        {
+            id: 6,
+            imagen: "foto6.jpg",
+            titulo: "Recuerdo 6"
+        }
+
+    ];
 
 
-    renderizarFotos();
+    let ordenFotos = [];
 
-}
+    let elementoArrastrado = null;
 
 
-/* =========================================================
-   RENDERIZAR FOTOS
-========================================================= */
 
-function renderizarFotos() {
+    /* =====================================================
+       PASAR A PRUEBA 4
+    ===================================================== */
 
-    const photoBoard =
+    function mostrarPrueba4() {
+
         document.getElementById(
-            "photoBoard"
+            "prueba3"
+        ).style.display = "none";
+
+
+        document.getElementById(
+            "prueba4"
+        ).style.display = "block";
+
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+
+        crearFotos();
+    }
+
+
+
+    /* =====================================================
+       CREAR FOTOS
+    ===================================================== */
+
+    function crearFotos() {
+
+        ordenFotos =
+            [...fotos];
+
+
+        /*
+            Mezclar las fotos.
+        */
+
+        ordenFotos.sort(
+            function () {
+                return Math.random() - 0.5;
+            }
         );
 
 
-    photoBoard.innerHTML = "";
+        renderizarFotos();
+    }
 
 
-    ordenFotos.forEach(
-        (foto, indice) => {
 
-            const tarjeta =
-                document.createElement(
-                    "div"
+    /* =====================================================
+       RENDERIZAR FOTOS
+    ===================================================== */
+
+    function renderizarFotos() {
+
+        const photoBoard =
+            document.getElementById(
+                "photoBoard"
+            );
+
+
+        photoBoard.innerHTML = "";
+
+
+        ordenFotos.forEach(
+            function (foto, indice) {
+
+                const tarjeta =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                tarjeta.className =
+                    "photo-card";
+
+
+                tarjeta.draggable =
+                    true;
+
+
+                tarjeta.dataset.id =
+                    foto.id;
+
+
+                tarjeta.innerHTML = `
+
+                    <div class="photo-number">
+                        ${indice + 1}
+                    </div>
+
+                    <img
+                        src="${foto.imagen}"
+                        alt="${foto.titulo}"
+                    >
+
+                    <div class="photo-title">
+                        ${foto.titulo}
+                    </div>
+
+                    <div class="photo-buttons">
+
+                        <button
+                            type="button"
+                            onclick="moverFoto(${indice}, -1)"
+                        >
+                            ▲
+                        </button>
+
+                        <button
+                            type="button"
+                            onclick="moverFoto(${indice}, 1)"
+                        >
+                            ▼
+                        </button>
+
+                    </div>
+
+                `;
+
+
+                tarjeta.addEventListener(
+                    "dragstart",
+                    comenzarArrastre
                 );
 
 
-            tarjeta.className =
-                "photo-card";
+                tarjeta.addEventListener(
+                    "dragend",
+                    terminarArrastre
+                );
 
 
-            tarjeta.draggable =
-                true;
+                tarjeta.addEventListener(
+                    "dragover",
+                    permitirSoltar
+                );
 
 
-            tarjeta.dataset.id =
-                foto.id;
+                tarjeta.addEventListener(
+                    "drop",
+                    soltarFoto
+                );
 
 
-            tarjeta.innerHTML = `
+                photoBoard.appendChild(
+                    tarjeta
+                );
 
-                <div class="photo-number">
-                    ${indice + 1}
-                </div>
+            }
+        );
 
-                <img
-                    src="${foto.imagen}"
-                    alt="${foto.titulo}"
-                >
 
-                <div class="photo-title">
-                    ${foto.titulo}
-                </div>
+        actualizarNumeros();
+    }
 
-                <div class="photo-buttons">
 
-                    <button
-                        onclick="moverFoto(${indice}, -1)"
-                        type="button"
-                    >
-                        ▲
-                    </button>
 
-                    <button
-                        onclick="moverFoto(${indice}, 1)"
-                        type="button"
-                    >
-                        ▼
-                    </button>
+    /* =====================================================
+       DRAG & DROP
+    ===================================================== */
 
-                </div>
+    function comenzarArrastre(event) {
+
+        elementoArrastrado =
+            event.currentTarget;
+
+
+        elementoArrastrado.classList.add(
+            "dragging"
+        );
+    }
+
+
+    function terminarArrastre(event) {
+
+        event.currentTarget.classList.remove(
+            "dragging"
+        );
+    }
+
+
+    function permitirSoltar(event) {
+
+        event.preventDefault();
+    }
+
+
+    function soltarFoto(event) {
+
+        event.preventDefault();
+
+
+        const destino =
+            event.currentTarget;
+
+
+        if (
+            !elementoArrastrado ||
+            elementoArrastrado === destino
+        ) {
+
+            return;
+        }
+
+
+        const board =
+            document.getElementById(
+                "photoBoard"
+            );
+
+
+        const tarjetas =
+            [...board.children];
+
+
+        const posicionOrigen =
+            tarjetas.indexOf(
+                elementoArrastrado
+            );
+
+
+        const posicionDestino =
+            tarjetas.indexOf(
+                destino
+            );
+
+
+        const temporal =
+            ordenFotos[
+                posicionOrigen
+            ];
+
+
+        ordenFotos[
+            posicionOrigen
+        ] =
+            ordenFotos[
+                posicionDestino
+            ];
+
+
+        ordenFotos[
+            posicionDestino
+        ] =
+            temporal;
+
+
+        elementoArrastrado = null;
+
+
+        renderizarFotos();
+    }
+
+
+
+    /* =====================================================
+       MOVER FOTOS CON FLECHAS
+    ===================================================== */
+
+    function moverFoto(
+        indice,
+        direccion
+    ) {
+
+        const nuevaPosicion =
+            indice + direccion;
+
+
+        if (
+            nuevaPosicion < 0 ||
+            nuevaPosicion >=
+            ordenFotos.length
+        ) {
+
+            return;
+        }
+
+
+        const temporal =
+            ordenFotos[indice];
+
+
+        ordenFotos[indice] =
+            ordenFotos[
+                nuevaPosicion
+            ];
+
+
+        ordenFotos[
+            nuevaPosicion
+        ] =
+            temporal;
+
+
+        renderizarFotos();
+    }
+
+
+
+    /* =====================================================
+       ACTUALIZAR NÚMEROS
+    ===================================================== */
+
+    function actualizarNumeros() {
+
+        const tarjetas =
+            document.querySelectorAll(
+                ".photo-card"
+            );
+
+
+        tarjetas.forEach(
+            function (tarjeta, indice) {
+
+                tarjeta.querySelector(
+                    ".photo-number"
+                ).textContent =
+                    indice + 1;
+            }
+        );
+    }
+
+
+
+    /* =====================================================
+       COMPROBAR ORDEN
+    ===================================================== */
+
+    function comprobarOrden() {
+
+        let correcto = true;
+
+
+        ordenFotos.forEach(
+            function (foto, indice) {
+
+                if (
+                    foto.id !==
+                    indice + 1
+                ) {
+
+                    correcto = false;
+                }
+            }
+        );
+
+
+        const resultado =
+            document.getElementById(
+                "resultado4"
+            );
+
+
+        const continuar =
+            document.getElementById(
+                "continuar4"
+            );
+
+
+        resultado.style.display =
+            "block";
+
+
+        if (correcto) {
+
+            resultado.className =
+                "correcto";
+
+
+            resultado.innerHTML = `
+
+                <h2>🎉 ¡LO HAS CONSEGUIDO! 🎉</h2>
+
+                <p>
+                    Has colocado correctamente
+                    las 6 fotos.
+                </p>
+
+                <p>
+                    Has llegado al final... ❤️
+                </p>
 
             `;
 
 
-            tarjeta.addEventListener(
-                "dragstart",
-                comenzarArrastre
-            );
+            continuar.style.display =
+                "block";
 
 
-            tarjeta.addEventListener(
-                "dragend",
-                terminarArrastre
-            );
+            document
+                .querySelectorAll(
+                    ".photo-card"
+                )
+                .forEach(
+                    function (card) {
+
+                        card.classList.add(
+                            "correct-position"
+                        );
+                    }
+                );
+
+        } else {
+
+            resultado.className =
+                "incorrecto";
 
 
-            tarjeta.addEventListener(
-                "dragover",
-                permitirSoltar
-            );
+            resultado.innerHTML = `
+
+                <h2>❌ Todavía no...</h2>
+
+                <p>
+                    Algunas fotos todavía
+                    no están en su sitio.
+                </p>
+
+                <p>
+                    ¡Inténtalo otra vez! ❤️
+                </p>
+
+            `;
 
 
-            tarjeta.addEventListener(
-                "drop",
-                soltarFoto
-            );
-
-
-            photoBoard.appendChild(
-                tarjeta
-            );
-
+            continuar.style.display =
+                "none";
         }
-    );
-
-
-    actualizarNumeros();
-
-}
-
-
-/* =========================================================
-   DRAG & DROP
-========================================================= */
-
-function comenzarArrastre(
-    event
-) {
-
-    elementoArrastrado =
-        event.currentTarget;
-
-
-    elementoArrastrado
-        .classList.add(
-            "dragging"
-        );
-
-}
-
-
-function terminarArrastre(
-    event
-) {
-
-    event.currentTarget
-        .classList.remove(
-            "dragging"
-        );
-
-}
-
-
-function permitirSoltar(
-    event
-) {
-
-    event.preventDefault();
-
-}
-
-
-function soltarFoto(
-    event
-) {
-
-    event.preventDefault();
-
-
-    const destino =
-        event.currentTarget;
-
-
-    if (
-        !elementoArrastrado ||
-        elementoArrastrado === destino
-    ) {
-
-        return;
-
     }
 
 
-    const board =
-        document.getElementById(
-            "photoBoard"
+
+    /* =====================================================
+       REGALO FINAL
+    ===================================================== */
+
+    function regaloFinal() {
+
+        alert(
+            "🎁 ¡HAS SUPERADO TODAS LAS PRUEBAS! ❤️"
         );
-
-
-    const tarjetas =
-        [
-            ...board.children
-        ];
-
-
-    const posicionOrigen =
-        tarjetas.indexOf(
-            elementoArrastrado
-        );
-
-
-    const posicionDestino =
-        tarjetas.indexOf(
-            destino
-        );
-
-
-    /*
-        Cambiar array.
-    */
-
-    const temporal =
-        ordenFotos[
-            posicionOrigen
-        ];
-
-
-    ordenFotos[
-        posicionOrigen
-    ] =
-        ordenFotos[
-            posicionDestino
-        ];
-
-
-    ordenFotos[
-        posicionDestino
-    ] =
-        temporal;
-
-
-    /*
-        Volver a dibujar.
-    */
-
-    renderizarFotos();
-
-
-    elementoArrastrado =
-        null;
-
-}
-
-
-/* =========================================================
-   MOVER CON FLECHAS
-========================================================= */
-
-function moverFoto(
-    indice,
-    direccion
-) {
-
-    const nuevaPosicion =
-        indice + direccion;
-
-
-    if (
-        nuevaPosicion < 0 ||
-        nuevaPosicion >=
-        ordenFotos.length
-    ) {
-
-        return;
-
     }
-
-
-    const temporal =
-        ordenFotos[indice];
-
-
-    ordenFotos[indice] =
-        ordenFotos[
-            nuevaPosicion
-        ];
-
-
-    ordenFotos[
-        nuevaPosicion
-    ] =
-        temporal;
-
-
-    renderizarFotos();
-
-}
-
-
-/* =========================================================
-   ACTUALIZAR NÚMEROS
-========================================================= */
-
-function actualizarNumeros() {
-
-    const tarjetas =
-        document.querySelectorAll(
-            ".photo-card"
-        );
-
-
-    tarjetas.forEach(
-        (tarjeta, indice) => {
-
-            tarjeta.querySelector(
-                ".photo-number"
-            ).textContent =
-                indice + 1;
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   COMPROBAR ORDEN
-========================================================= */
-
-function comprobarOrden() {
-
-    let correcto = true;
-
-
-    ordenFotos.forEach(
-        (foto, indice) => {
-
-            if (
-                foto.id !==
-                indice + 1
-            ) {
-
-                correcto = false;
-
-            }
-
-        }
-    );
-
-
-    const resultado =
-        document.getElementById(
-            "resultado4"
-        );
-
-
-    const continuar =
-        document.getElementById(
-            "continuar4"
-        );
-
-
-    resultado.style.display =
-        "block";
-
-
-    if (correcto) {
-
-        resultado.className =
-            "correcto";
-
-
-        resultado.innerHTML = `
-
-            <h2>🎉 ¡LO HAS CONSEGUIDO! 🎉</h2>
-
-            <p>
-                Has colocado correctamente
-                las 6 fotos.
-            </p>
-
-            <p>
-                Has llegado al final... ❤️
-            </p>
-
-        `;
-
-
-        continuar.style.display =
-            "block";
-
-
-        document
-            .querySelectorAll(
-                ".photo-card"
-            )
-            .forEach(
-                card => {
-
-                    card.classList.add(
-                        "correct-position"
-                    );
-
-                }
-            );
-
-    }
-
-    else {
-
-        resultado.className =
-            "incorrecto";
-
-
-        resultado.innerHTML = `
-
-            <h2>❌ Todavía no...</h2>
-
-            <p>
-                Algunas fotos todavía
-                no están en su sitio.
-            </p>
-
-            <p>
-                ¡Inténtalo otra vez! ❤️
-            </p>
-
-        `;
-
-
-        continuar.style.display =
-            "none";
-
-    }
-
-}
-
-
-/* =========================================================
-   REGALO FINAL
-========================================================= */
-
-function regaloFinal() {
-
-    alert(
-        "🎁 ¡HAS SUPERADO TODAS LAS PRUEBAS! ❤️"
-    );
-
-}
-
 
 </script>
 
@@ -2745,4 +2587,3 @@ function regaloFinal() {
 </body>
 
 </html>
-```
