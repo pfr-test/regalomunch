@@ -16,7 +16,7 @@ body {
     margin: 0;
     min-height: 100vh;
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    background: linear-gradient(135deg, #ff7b8a, #ffc4b8);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -164,52 +164,78 @@ button:hover {
 }
 
 
-/* TABLERO */
+/* =========================
+   TABLERO
+========================= */
 
 .board-container {
     display: flex;
     justify-content: center;
+    align-items: center;
     margin: 25px 0;
+    width: 100%;
 }
 
 .board {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    width: min(90vw, 640px);
+
+    /* AHORA ES 6x6 */
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+
+    width: min(90vw, 570px);
     aspect-ratio: 1 / 1;
-    border: 4px solid #333;
-    border-radius: 10px;
+
+    border: 5px solid #222;
+    border-radius: 12px;
+
     overflow: hidden;
+
+    /* Evita cualquier cambio de tamaño */
+    flex-shrink: 0;
 }
 
 
-/* CASILLAS */
+/* =========================
+   CASILLAS
+========================= */
 
 .cell {
     position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    min-width: 0;
+    min-height: 0;
+
     display: flex;
     justify-content: center;
     align-items: center;
 
-    border: 1px solid rgba(0,0,0,0.15);
+    border: 2px solid rgba(0,0,0,0.22);
 
-    font-size: clamp(22px, 5vw, 48px);
+    /*
+        Tamaño fijo para que la X y la corona
+        no cambien el tamaño del tablero.
+    */
+    font-size: clamp(25px, 5vw, 48px);
+    line-height: 1;
 
     cursor: pointer;
-
     user-select: none;
 
-    transition:
-        transform 0.1s,
-        filter 0.15s;
+    /*
+        No usamos transform al pulsar.
+        Así el tablero nunca "salta".
+    */
+    transition: filter 0.15s ease;
+
+    overflow: hidden;
 }
 
 .cell:hover {
     filter: brightness(1.08);
-}
-
-.cell:active {
-    transform: scale(0.92);
 }
 
 
@@ -217,36 +243,33 @@ button:hover {
    COLORES DE REGIONES
 ========================= */
 
+/*
+   Colores mucho más intensos para que
+   las regiones se distingan claramente.
+*/
+
 .region0 {
-    background: #ffd6e7;
+    background: #ff8fab;
 }
 
 .region1 {
-    background: #d7ecff;
+    background: #72b7ff;
 }
 
 .region2 {
-    background: #fff0b8;
+    background: #ffd65a;
 }
 
 .region3 {
-    background: #d9f7d5;
+    background: #70d67a;
 }
 
 .region4 {
-    background: #e5d7ff;
+    background: #b48cff;
 }
 
 .region5 {
-    background: #ffd9bd;
-}
-
-.region6 {
-    background: #cceeea;
-}
-
-.region7 {
-    background: #f5d5ff;
+    background: #ff9b62;
 }
 
 
@@ -255,33 +278,63 @@ button:hover {
 ========================= */
 
 .x {
-    color: #555;
-    font-size: clamp(18px, 4vw, 32px);
-    font-weight: bold;
+    color: #202020;
+
+    font-size: clamp(22px, 4vw, 38px);
+
+    font-weight: 900;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    line-height: 1;
 }
 
 .queen {
-    font-size: clamp(25px, 5vw, 48px);
-    animation: aparecer 0.2s ease;
+    font-size: clamp(27px, 5vw, 48px);
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    line-height: 1;
+
+    /*
+        La animación solo afecta al contenido,
+        no al tamaño de la casilla.
+    */
+    animation: aparecer 0.15s ease;
 }
 
 @keyframes aparecer {
 
     from {
-        transform: scale(0);
+        opacity: 0;
+        transform: scale(0.7);
     }
 
     to {
+        opacity: 1;
         transform: scale(1);
     }
 
 }
 
 
-/* CONFLICTO */
+/* =========================
+   CONFLICTO
+========================= */
 
 .conflict {
-    background: #ff8b8b !important;
+    background: #ff3b3b !important;
+    box-shadow: inset 0 0 0 4px #b00000;
     animation: parpadeo 0.4s infinite alternate;
 }
 
@@ -292,7 +345,7 @@ button:hover {
     }
 
     to {
-        filter: brightness(0.75);
+        filter: brightness(0.72);
     }
 
 }
@@ -320,8 +373,16 @@ button:hover {
 
 #mensajeJuego {
     text-align: center;
+
+    /*
+        Reservamos siempre el mismo espacio.
+        Así el tablero no se desplaza cuando
+        aparece o cambia el mensaje.
+    */
     min-height: 25px;
+
     margin: 15px 0;
+
     font-weight: bold;
 }
 
@@ -363,6 +424,15 @@ button:hover {
 
     .rules {
         font-size: 14px;
+    }
+
+    .board {
+        width: min(92vw, 500px);
+        border-width: 4px;
+    }
+
+    .cell {
+        border-width: 1.5px;
     }
 
 }
@@ -604,7 +674,7 @@ button:hover {
         <ul>
 
             <li>
-                👑 Coloca <strong>8 reinas</strong>.
+                👑 Coloca <strong>6 reinas</strong>.
             </li>
 
             <li>
@@ -636,7 +706,7 @@ button:hover {
 
         <span>
             👑 Reinas:
-            <span id="contador">0</span>/8
+            <span id="contador">0</span>/6
         </span>
 
         <span>
@@ -667,7 +737,7 @@ button:hover {
         <h2>🎉 ¡PRUEBA SUPERADA! 🎉</h2>
 
         <p>
-            Has conseguido colocar las 8 reinas.
+            Has conseguido colocar las 6 reinas.
         </p>
 
         <p>
@@ -806,35 +876,26 @@ function mostrarPrueba2() {
 
 
 /* =========================================================
-   TABLERO QUEENS
+   TABLERO QUEENS 6x6
 ========================================================= */
 
 
 /*
     Cada número representa una región.
 
-    Hay exactamente 8 regiones.
+    Hay exactamente 6 regiones.
 
-    El tablero tiene una solución única.
+    El tablero es 6x6.
 */
 
 const regiones = [
 
-    [2,2,2,0,3,3,3,3],
-
-    [2,0,0,0,3,3,3,3],
-
-    [2,2,6,6,4,3,3,3],
-
-    [6,2,6,6,1,3,3,3],
-
-    [6,6,6,6,1,3,3,3],
-
-    [6,6,6,5,1,1,3,3],
-
-    [6,1,1,1,1,1,7,7],
-
-    [6,6,1,1,7,7,7,7]
+    [0,0,1,1,2,2],
+    [0,1,1,2,2,3],
+    [0,0,4,4,2,3],
+    [4,4,4,5,2,2],
+    [1,1,5,5,5,3],
+    [1,1,5,5,3,3]
 
 ];
 
@@ -842,28 +903,17 @@ const regiones = [
 /*
     Solución del puzzle.
 
-    IMPORTANTE:
-
-    No se muestra al jugador.
+    6 reinas.
 */
 
 const solucion = [
 
     [0,0],
-
     [1,2],
-
     [2,4],
-
-    [3,6],
-
-    [4,1],
-
-    [5,3],
-
-    [6,5],
-
-    [7,7]
+    [3,1],
+    [4,3],
+    [5,5]
 
 ];
 
@@ -893,11 +943,11 @@ function crearTablero() {
     estado = [];
 
 
-    for (let fila = 0; fila < 8; fila++) {
+    for (let fila = 0; fila < 6; fila++) {
 
         estado[fila] = [];
 
-        for (let columna = 0; columna < 8; columna++) {
+        for (let columna = 0; columna < 6; columna++) {
 
             estado[fila][columna] = 0;
 
@@ -988,12 +1038,21 @@ function actualizarTablero() {
 
     celdas.forEach((celda, indice) => {
 
+        /*
+            AHORA EL TABLERO ES 6x6.
+        */
+
         const fila =
-            Math.floor(indice / 8);
+            Math.floor(indice / 6);
 
         const columna =
-            indice % 8;
+            indice % 6;
 
+
+        /*
+            Mantener siempre el mismo contenido
+            y tamaño de casilla.
+        */
 
         celda.innerHTML = "";
 
@@ -1042,9 +1101,9 @@ function comprobarTablero() {
     const reinas = [];
 
 
-    for (let fila = 0; fila < 8; fila++) {
+    for (let fila = 0; fila < 6; fila++) {
 
-        for (let columna = 0; columna < 8; columna++) {
+        for (let columna = 0; columna < 6; columna++) {
 
             if (estado[fila][columna] === 2) {
 
@@ -1060,12 +1119,12 @@ function comprobarTablero() {
     }
 
 
+    let hayConflicto = false;
+
+
     /*
         Comprobar parejas de reinas.
     */
-
-    let hayConflicto = false;
-
 
     for (let i = 0; i < reinas.length; i++) {
 
@@ -1181,10 +1240,10 @@ function comprobarTablero() {
 
 
     /*
-        Si todavía no hay 8 reinas
+        Si todavía no hay 6 reinas
     */
 
-    if (reinas.length < 8) {
+    if (reinas.length < 6) {
 
         mensaje.textContent =
             "🧠 Sigue pensando...";
@@ -1197,7 +1256,7 @@ function comprobarTablero() {
 
 
     /*
-        Si hay 8 y no hay conflictos,
+        Si hay 6 y no hay conflictos,
         comprobamos las regiones.
     */
 
@@ -1226,9 +1285,9 @@ function comprobarTablero() {
 
 
     if (
-        regionesUsadas.size === 8 &&
-        filasUsadas.size === 8 &&
-        columnasUsadas.size === 8
+        regionesUsadas.size === 6 &&
+        filasUsadas.size === 6 &&
+        columnasUsadas.size === 6
     ) {
 
         ganarJuego();
@@ -1244,11 +1303,15 @@ function comprobarTablero() {
 
 function marcarConflicto(a, b) {
 
+    /*
+        AHORA SON 6 COLUMNAS.
+    */
+
     const indiceA =
-        a.fila * 8 + a.columna;
+        a.fila * 6 + a.columna;
 
     const indiceB =
-        b.fila * 8 + b.columna;
+        b.fila * 6 + b.columna;
 
 
     const celdas =
@@ -1336,11 +1399,6 @@ function prueba3() {
     /*
         Aquí añadiremos posteriormente
         la tercera prueba.
-
-        Por ejemplo:
-
-        document.getElementById("prueba2").style.display = "none";
-        document.getElementById("prueba3").style.display = "block";
     */
 
 }
