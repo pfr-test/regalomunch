@@ -249,27 +249,27 @@ button:hover {
 */
 
 .region0 {
-    background: #ff8fab;
+    background: #ff4d6d; /* ROJO / ROSA FUERTE */
 }
 
 .region1 {
-    background: #72b7ff;
+    background: #2979ff; /* AZUL */
 }
 
 .region2 {
-    background: #ffd65a;
+    background: #ffd600; /* AMARILLO */
 }
 
 .region3 {
-    background: #70d67a;
+    background: #00c853; /* VERDE */
 }
 
 .region4 {
-    background: #b48cff;
+    background: #8e24aa; /* MORADO */
 }
 
 .region5 {
-    background: #ff9b62;
+    background: #ff6d00; /* NARANJA */
 }
 
 
