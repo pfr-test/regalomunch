@@ -1,763 +1,1348 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Una sorpresa para ti ❤️</title>
-
-<style>
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    min-height: 100vh;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #ff7b8a, #ffc4b8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-.container {
-    background: white;
-    width: 100%;
-    max-width: 850px;
-    padding: 35px;
-    border-radius: 25px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-}
-
-.header {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.header h1 {
-    color: #e75480;
-    margin-bottom: 10px;
-}
-
-.header p {
-    color: #666;
-    line-height: 1.5;
-}
-
-
-/* =========================
-   PRUEBA 1
-========================= */
-
-#prueba1 {
-    display: block;
-}
-
-.question {
-    margin-bottom: 28px;
-}
-
-.question h3 {
-    margin-bottom: 12px;
-    color: #333;
-}
-
-.options {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.option {
-    border: 2px solid #eee;
-    border-radius: 12px;
-    padding: 12px;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.option:hover {
-    border-color: #e75480;
-    background: #fff5f7;
-}
-
-.option input {
-    margin-right: 8px;
-}
-
-
-/* =========================
-   BOTONES
-========================= */
-
-button {
-    width: 100%;
-    border: none;
-    border-radius: 12px;
-    padding: 15px;
-    font-size: 17px;
-    font-weight: bold;
-    cursor: pointer;
-    background: #e75480;
-    color: white;
-    transition: 0.2s;
-}
-
-button:hover {
-    transform: translateY(-2px);
-    opacity: 0.9;
-}
-
-#continuar1,
-#continuar2 {
-    display: none;
-    margin-top: 15px;
-    background: #28a745;
-}
 
-
-/* =========================
-   RESULTADOS
-========================= */
-
-#resultado1 {
-    display: none;
-    text-align: center;
-    margin-top: 20px;
-    padding: 18px;
-    border-radius: 15px;
-}
-
-.correcto {
-    background: #e8f8ee;
-    color: #218838;
-}
-
-.incorrecto {
-    background: #fff0f0;
-    color: #c62828;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Una sorpresa para ti ❤️</title>
 
-/* =========================
-   PRUEBA 2
-========================= */
 
-#prueba2 {
-    display: none;
-}
+    <style>
 
-.rules {
-    background: #fff7fa;
-    border-radius: 15px;
-    padding: 18px;
-    margin-bottom: 25px;
-    color: #555;
-}
+        /* =====================================================
+           ESTILOS GENERALES
+        ===================================================== */
 
-.rules ul {
-    margin-bottom: 0;
-    line-height: 1.8;
-}
-
-
-/* =========================
-   TABLERO
-========================= */
-
-.board-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 25px 0;
-    width: 100%;
-}
+        * {
+            box-sizing: border-box;
+        }
 
-.board {
-    display: grid;
+        body {
+            margin: 0;
+            min-height: 100vh;
 
-    /* AHORA ES 6x6 */
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(6, 1fr);
+            font-family: Arial, sans-serif;
 
-    width: min(90vw, 570px);
-    aspect-ratio: 1 / 1;
+            background: linear-gradient(
+                135deg,
+                #ff7b8a,
+                #ffc4b8
+            );
 
-    border: 5px solid #222;
-    border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-    overflow: hidden;
+            padding: 20px;
+        }
 
-    /* Evita cualquier cambio de tamaño */
-    flex-shrink: 0;
-}
+        .container {
+            background: white;
 
+            width: 100%;
+            max-width: 850px;
 
-/* =========================
-   CASILLAS
-========================= */
+            padding: 35px;
 
-.cell {
-    position: relative;
+            border-radius: 25px;
 
-    width: 100%;
-    height: 100%;
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.15);
+        }
 
-    min-width: 0;
-    min-height: 0;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+        /* =====================================================
+           CABECERA
+        ===================================================== */
 
-    border: 2px solid rgba(0,0,0,0.22);
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
 
-    /*
-        Tamaño fijo para que la X y la corona
-        no cambien el tamaño del tablero.
-    */
-    font-size: clamp(25px, 5vw, 48px);
-    line-height: 1;
+        .header h1 {
+            color: #e75480;
+            margin-bottom: 10px;
+        }
 
-    cursor: pointer;
-    user-select: none;
+        .header p {
+            color: #666;
+            line-height: 1.5;
+        }
 
-    /*
-        No usamos transform al pulsar.
-        Así el tablero nunca "salta".
-    */
-    transition: filter 0.15s ease;
 
-    overflow: hidden;
-}
+        /* =====================================================
+           PRUEBA 1
+        ===================================================== */
 
-.cell:hover {
-    filter: brightness(1.08);
-}
+        #prueba1 {
+            display: block;
+        }
 
+        .question {
+            margin-bottom: 28px;
+        }
 
-/* =========================
-   COLORES DE REGIONES
-========================= */
+        .question h3 {
+            margin-bottom: 12px;
+            color: #333;
+        }
 
-/*
-   Colores mucho más intensos para que
-   las regiones se distingan claramente.
-*/
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
 
-.region0 {
-    background: #ff4d6d; /* ROJO / ROSA FUERTE */
-}
+        .option {
+            border: 2px solid #eee;
+            border-radius: 12px;
 
-.region1 {
-    background: #2979ff; /* AZUL */
-}
+            padding: 12px;
 
-.region2 {
-    background: #ffd600; /* AMARILLO */
-}
+            cursor: pointer;
 
-.region3 {
-    background: #00c853; /* VERDE */
-}
+            transition: 0.2s;
+        }
 
-.region4 {
-    background: #8e24aa; /* MORADO */
-}
+        .option:hover {
+            border-color: #e75480;
+            background: #fff5f7;
+        }
 
-.region5 {
-    background: #ff6d00; /* NARANJA */
-}
+        .option input {
+            margin-right: 8px;
+        }
 
 
-/* =========================
-   MARCAS
-========================= */
+        /* =====================================================
+           BOTONES
+        ===================================================== */
 
-.x {
-    color: #202020;
+        button {
+            width: 100%;
 
-    font-size: clamp(22px, 4vw, 38px);
+            border: none;
+            border-radius: 12px;
 
-    font-weight: 900;
+            padding: 15px;
 
-    width: 100%;
-    height: 100%;
+            font-size: 17px;
+            font-weight: bold;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+            cursor: pointer;
 
-    line-height: 1;
-}
+            background: #e75480;
+            color: white;
 
-.queen {
-    font-size: clamp(27px, 5vw, 48px);
+            transition: 0.2s;
+        }
 
-    width: 100%;
-    height: 100%;
+        button:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+        #continuar1,
+        #continuar2,
+        #continuar3,
+        #continuar4 {
+            display: none;
 
-    line-height: 1;
+            margin-top: 15px;
 
-    /*
-        La animación solo afecta al contenido,
-        no al tamaño de la casilla.
-    */
-    animation: aparecer 0.15s ease;
-}
+            background: #28a745;
+        }
 
-@keyframes aparecer {
 
-    from {
-        opacity: 0;
-        transform: scale(0.7);
-    }
+        /* =====================================================
+           RESULTADOS
+        ===================================================== */
 
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+        #resultado1,
+        #resultado3,
+        #resultado4 {
+            display: none;
 
-}
+            text-align: center;
 
+            margin-top: 20px;
 
-/* =========================
-   CONFLICTO
-========================= */
+            padding: 18px;
 
-.conflict {
-    background: #ff3b3b !important;
-    box-shadow: inset 0 0 0 4px #b00000;
-    animation: parpadeo 0.4s infinite alternate;
-}
+            border-radius: 15px;
+        }
 
-@keyframes parpadeo {
+        .correcto {
+            background: #e8f8ee;
+            color: #218838;
+        }
 
-    from {
-        filter: brightness(1);
-    }
+        .incorrecto {
+            background: #fff0f0;
+            color: #c62828;
+        }
 
-    to {
-        filter: brightness(0.72);
-    }
 
-}
+        /* =====================================================
+           PRUEBA 2
+        ===================================================== */
 
+        #prueba2 {
+            display: none;
+        }
 
-/* =========================
-   INFORMACIÓN DEL JUEGO
-========================= */
+        .rules {
+            background: #fff7fa;
 
-.game-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+            border-radius: 15px;
 
-    background: #f7f7f7;
+            padding: 18px;
 
-    padding: 12px 18px;
+            margin-bottom: 25px;
 
-    border-radius: 12px;
+            color: #555;
+        }
 
-    margin-bottom: 15px;
+        .rules ul {
+            margin-bottom: 0;
+            line-height: 1.8;
+        }
 
-    font-weight: bold;
-}
 
-#mensajeJuego {
-    text-align: center;
+        /* =====================================================
+           INFORMACIÓN DEL JUEGO
+        ===================================================== */
 
-    /*
-        Reservamos siempre el mismo espacio.
-        Así el tablero no se desplaza cuando
-        aparece o cambia el mensaje.
-    */
-    min-height: 25px;
+        .game-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
 
-    margin: 15px 0;
+            background: #f7f7f7;
 
-    font-weight: bold;
-}
+            padding: 12px 18px;
 
-.reset {
-    background: #777;
-    margin-top: 10px;
-}
+            border-radius: 12px;
 
+            margin-bottom: 15px;
 
-/* =========================
-   PRUEBA SUPERADA
-========================= */
+            font-weight: bold;
+        }
 
-#victoria {
-    display: none;
-    text-align: center;
-    padding: 20px;
-}
 
-#victoria h2 {
-    color: #28a745;
-    font-size: 30px;
-}
+        /* =====================================================
+           TABLERO
+        ===================================================== */
 
+        .board-container {
+            display: flex;
 
-/* =========================
-   RESPONSIVE
-========================= */
+            justify-content: center;
+            align-items: center;
 
-@media (max-width: 600px) {
+            margin: 25px 0;
 
-    .container {
-        padding: 20px;
-    }
+            width: 100%;
+        }
 
-    .header h1 {
-        font-size: 25px;
-    }
+        .board {
+            display: grid;
 
-    .rules {
-        font-size: 14px;
-    }
+            grid-template-columns:
+                repeat(6, 1fr);
 
-    .board {
-        width: min(92vw, 500px);
-        border-width: 4px;
-    }
+            grid-template-rows:
+                repeat(6, 1fr);
 
-    .cell {
-        border-width: 1.5px;
-    }
+            width: min(90vw, 570px);
 
-}
+            aspect-ratio: 1 / 1;
 
-</style>
+            border: 5px solid #222;
+
+            border-radius: 12px;
+
+            overflow: hidden;
+
+            flex-shrink: 0;
+        }
+
+
+        /* =====================================================
+           CASILLAS
+        ===================================================== */
+
+        .cell {
+            position: relative;
+
+            width: 100%;
+            height: 100%;
+
+            min-width: 0;
+            min-height: 0;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            border:
+                2px solid rgba(0, 0, 0, 0.22);
+
+            font-size:
+                clamp(25px, 5vw, 48px);
+
+            line-height: 1;
+
+            cursor: pointer;
+
+            user-select: none;
+
+            transition:
+                filter 0.15s ease;
+
+            overflow: hidden;
+        }
+
+        .cell:hover {
+            filter: brightness(1.08);
+        }
+
+
+        /* =====================================================
+           COLORES DE LAS REGIONES
+        ===================================================== */
+
+        .region0 {
+            background: #ff4d6d;
+        }
+
+        .region1 {
+            background: #2979ff;
+        }
+
+        .region2 {
+            background: #ffd600;
+        }
+
+        .region3 {
+            background: #00c853;
+        }
+
+        .region4 {
+            background: #8e24aa;
+        }
+
+        .region5 {
+            background: #ff6d00;
+        }
+
+
+        /* =====================================================
+           X
+        ===================================================== */
+
+        .x {
+            color: #202020;
+
+            font-size:
+                clamp(22px, 4vw, 38px);
+
+            font-weight: 900;
+
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            line-height: 1;
+        }
+
+
+        /* =====================================================
+           REINA
+        ===================================================== */
+
+        .queen {
+            font-size:
+                clamp(27px, 5vw, 48px);
+
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            line-height: 1;
+
+            animation:
+                aparecer 0.15s ease;
+        }
+
+        @keyframes aparecer {
+
+            from {
+                opacity: 0;
+                transform: scale(0.7);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+        }
+
+
+        /* =====================================================
+           CONFLICTOS
+        ===================================================== */
+
+        .conflict {
+            background: #ff3b3b !important;
+
+            box-shadow:
+                inset 0 0 0 4px #b00000;
+
+            animation:
+                parpadeo 0.4s infinite alternate;
+        }
+
+        @keyframes parpadeo {
+
+            from {
+                filter: brightness(1);
+            }
+
+            to {
+                filter: brightness(0.72);
+            }
+
+        }
+
+
+        /* =====================================================
+           MENSAJE DEL JUEGO
+        ===================================================== */
+
+        #mensajeJuego {
+            text-align: center;
+
+            min-height: 25px;
+
+            margin: 15px 0;
+
+            font-weight: bold;
+        }
+
+        .reset {
+            background: #777;
+            margin-top: 10px;
+        }
+
+
+        /* =====================================================
+           VICTORIA
+        ===================================================== */
+
+        #victoria {
+            display: none;
+
+            text-align: center;
+
+            padding: 20px;
+        }
+
+        #victoria h2 {
+            color: #28a745;
+            font-size: 30px;
+        }
+
+
+        /* =====================================================
+           PRUEBA 3
+        ===================================================== */
+
+        #prueba3 {
+            display: none;
+        }
+
+        .answer-question {
+            margin-bottom: 25px;
+        }
+
+        .answer-question h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .answer-input {
+            width: 100%;
+
+            padding: 14px;
+
+            border:
+                2px solid #ddd;
+
+            border-radius: 12px;
+
+            font-size: 16px;
+
+            outline: none;
+
+            transition: 0.2s;
+        }
+
+        .answer-input:focus {
+            border-color: #e75480;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(231, 84, 128, 0.15);
+        }
+
+
+        /* =====================================================
+           PRUEBA 4
+        ===================================================== */
+
+        #prueba4 {
+            display: none;
+        }
+
+        .photo-instructions {
+            background: #fff7fa;
+
+            border-radius: 15px;
+
+            padding: 18px;
+
+            margin-bottom: 25px;
+
+            color: #555;
+
+            line-height: 1.6;
+        }
+
+
+        /* =====================================================
+           TABLERO DE FOTOS
+        ===================================================== */
+
+        .photo-board {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 12px;
+
+            margin: 25px 0;
+        }
+
+
+        /* =====================================================
+           TARJETAS DE FOTOS
+        ===================================================== */
+
+        .photo-card {
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+            background: white;
+
+            border:
+                3px solid #ddd;
+
+            border-radius: 15px;
+
+            padding: 10px;
+
+            cursor: grab;
+
+            transition:
+                transform 0.2s,
+                border-color 0.2s,
+                box-shadow 0.2s;
+
+            user-select: none;
+        }
+
+        .photo-card:hover {
+            border-color: #e75480;
+
+            box-shadow:
+                0 5px 15px
+                rgba(0, 0, 0, 0.1);
+        }
+
+        .photo-card.dragging {
+            opacity: 0.5;
+
+            transform: scale(0.97);
+        }
+
+        .photo-card.correct-position {
+            border-color: #28a745;
+        }
+
+
+        /* =====================================================
+           NÚMERO DE FOTO
+        ===================================================== */
+
+        .photo-number {
+            width: 38px;
+            height: 38px;
+
+            min-width: 38px;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            background: #e75480;
+
+            color: white;
+
+            border-radius: 50%;
+
+            font-weight: bold;
+
+            font-size: 18px;
+        }
+
+
+        /* =====================================================
+           IMÁGENES
+        ===================================================== */
+
+        .photo-card img {
+            width: 150px;
+            height: 100px;
+
+            object-fit: cover;
+
+            border-radius: 10px;
+
+            background: #eee;
+
+            flex-shrink: 0;
+        }
+
+        .photo-title {
+            font-weight: bold;
+            color: #444;
+        }
+
+
+        /* =====================================================
+           BOTONES DE LAS FOTOS
+        ===================================================== */
+
+        .photo-buttons {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 5px;
+
+            margin-left: auto;
+        }
+
+        .photo-buttons button {
+            width: 40px;
+            height: 35px;
+
+            padding: 0;
+
+            border-radius: 8px;
+
+            font-size: 18px;
+
+            background: #777;
+        }
+
+        .photo-buttons button:hover {
+            background: #e75480;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 600px) {
+
+            .container {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 25px;
+            }
+
+            .rules {
+                font-size: 14px;
+            }
+
+            .board {
+                width: min(92vw, 500px);
+
+                border-width: 4px;
+            }
+
+            .cell {
+                border-width: 1.5px;
+            }
+
+            .photo-card img {
+                width: 100px;
+                height: 75px;
+            }
+
+            .photo-title {
+                font-size: 14px;
+            }
+
+            .photo-number {
+                width: 32px;
+                height: 32px;
+
+                min-width: 32px;
+
+                font-size: 15px;
+            }
+
+        }
+
+    </style>
+
 </head>
 
 
 <body>
 
+
 <div class="container">
 
 
-<!-- =====================================================
-     PRUEBA 1
-===================================================== -->
+    <!-- =====================================================
+         PRUEBA 1
+    ===================================================== -->
 
-<section id="prueba1">
+    <section id="prueba1">
 
-    <div class="header">
+        <div class="header">
 
-        <h1>❤️ PRUEBA 1 ❤️</h1>
+            <h1>❤️ PRUEBA 1 ❤️</h1>
 
-        <p>
-            Si quieres descubrir tu sorpresa tendrás que superar
-            esta primera prueba...
-        </p>
+            <p>
+                Si quieres descubrir tu sorpresa tendrás que
+                superar esta primera prueba...
+            </p>
 
-        <p>
-            <strong>5 preguntas. 5 respuestas correctas.</strong>
-        </p>
-
-    </div>
-
-
-    <!-- PREGUNTA 1 -->
-
-    <div class="question">
-
-        <h3>1. ¿Cuál es mi comida favorita?</h3>
-
-        <div class="options">
-
-            <label class="option">
-                <input type="radio" name="pregunta1" value="a">
-                Pizza
-            </label>
-
-            <label class="option">
-                <input type="radio" name="pregunta1" value="b">
-                Sushi
-            </label>
-
-            <label class="option">
-                <input type="radio" name="pregunta1" value="c">
-                Hamburguesa
-            </label>
-
-            <label class="option">
-                <input type="radio" name="pregunta1" value="d">
-                Pasta
-            </label>
+            <p>
+                <strong>
+                    5 preguntas. 5 respuestas correctas.
+                </strong>
+            </p>
 
         </div>
 
-    </div>
 
+        <div class="question">
 
-    <!-- PREGUNTA 2 -->
+            <h3>
+                1. ¿Cuál es mi comida favorita?
+            </h3>
 
-    <div class="question">
+            <div class="options">
 
-        <h3>2. ¿Cuál fue nuestro primer plan juntos?</h3>
+                <label class="option">
+                    <input
+                        type="radio"
+                        name="pregunta1"
+                        value="a"
+                    >
+                    Pizza
+                </label>
 
-        <div class="options">
+                <label class="option">
+                    <input
+                        type="radio"
+                        name="pregunta1"
+                        value="b"
+                    >
+                    Sushi
+                </label>
 
-            <label class="option">
-                <input type="radio" name="pregunta2" value="a">
-                Ir al cine
-            </label>
+                <label class="option">
+                    <input
+                        type="radio"
+                        name="pregunta1"
+                        value="c"
+                    >
+                    Hamburguesa
+                </label>
 
-            <label class="option">
-                <input type="radio" name="pregunta2" value="b">
-                Ir a cenar
-            </label>
+                <label class="option">
+                    <input
+                        type="radio"
+                        name="pregunta1"
+                        value="d"
+                    >
+                    Pasta
+                </label>
 
-            <label class="option">
-                <input type="radio" name="pregunta2" value="c">
-                Dar un paseo
-            </label>
-
-            <label class="option">
-                <input type="radio" name="pregunta2" value="d">
-                Ir de viaje
-            </label>
-
-        </div>
-
-    </div>
-
-
-    <!-- PREGUNTA 3 -->
-
-    <div class="question">
-
-        <h3>3. ¿Cuál es mi mayor vicio?</h3>
-
-        <div class="options">
-
-            <label class="option">
-                <input type="radio" name="pregunta3" value="a">
-                Dormir
-            </label>
-
-            <label class="option">
-                <input type="radio" name="pregunta3" value="b">
-                Comer
-            </label>
-
-            <label class="option">
-                <input type="radio" name="pregunta3" value="c">
-                Videojuegos
-            </label>
-
-            <label class="option">
-                <input type="radio" name="pregunta3" value="d">
-                Compras
-            </label>
+            </div>
 
         </div>
 
-    </div>
 
+        <div class="question">
 
-    <!-- PREGUNTA 4 -->
+            <h3>
+                2. ¿Cuál fue nuestro primer plan juntos?
+            </h3>
 
-    <div class="question">
+            <div class="options">
 
-        <h3>4. ¿Qué lugar elegiría para pasar unas vacaciones?</h3>
+                <label class="option">
+                    <input
+                        type="radio"
+                        name="pregunta2"
+                        value="a"
+                    >
+                    Ir al cine
+                </label>
 
-        <div class="options">
+                <label class="option">
+                    <input
+                        type="radio"
+                        name="pregunta2"
+                        value="b"
+                    >
+                    Ir a cenar
+                </label>
 
-            <label class="option">
-                <input type="radio" name="pregunta4" value="a">
-                La playa 🏖️
-            </label>
+                <label class="option">
+                    <input
+                        type="radio"
+                        name="pregunta2"
+                        value="c"
+                    >
+                    Dar un paseo
+                </label>
 
-            <label class="option">
-                <input type="radio" name="pregunta4" value="b">
-                La montaña 🏔️
-            </label>
+                <label class="option">
+                    <input
+                        type="radio"
+                        name="pregunta2"
+                        value="d"
+                    >
+                    Ir de viaje
+                </label>
 
-            <label class="option">
-                <input type="radio" name="pregunta4" value="c">
-                Una gran ciudad 🌆
-            </label>
-
-            <label class="option">
-                <input type="radio" name="pregunta4" value="d">
-                Un pueblo tranquilo 🌳
-            </label>
-
-        </div>
-
-    </div>
-
-
-    <!-- PREGUNTA 5 -->
-
-    <div class="question">
-
-        <h3>5. ¿Qué prefiero?</h3>
-
-        <div class="options">
-
-            <label class="option">
-                <input type="radio" name="pregunta5" value="a">
-                Una película 🎬
-            </label>
-
-            <label class="option">
-                <input type="radio" name="pregunta5" value="b">
-                Una serie 📺
-            </label>
-
-            <label class="option">
-                <input type="radio" name="pregunta5" value="c">
-                Un concierto 🎵
-            </label>
-
-            <label class="option">
-                <input type="radio" name="pregunta5" value="d">
-                Un videojuego 🎮
-            </label>
+            </div>
 
         </div>
 
-    </div>
+
+        <div class="question">
+
+            <h3>
+                3. ¿Cuál es mi mayor vicio?
+            </h3>
+
+            <div class="options">
+
+                <label class="option">
+                    <input
+                        type="radio"
+                        name="pregunta3"
+                        value="a"
+                    >
+                    Dormir
+                </label>
+
+                <label class="option">
+                    <input
+                        type="radio"
+                        name="pregunta3"
+                        value="b"
+                    >
+                    Comer
+                </label>
+
+                <label class="option">
+                    <input
+                        type="radio"
+                        name="pregunta3"
+                        value="c"
+                    >
+                    Videojuegos
+                </label>
+
+                <label class="option">
+                    <input
+                        type="radio"
+                        name="pregunta3"
+                        value="d"
+                    >
+                    Compras
+                </label>
+
+            </div>
+
+        </div>
 
 
-    <button onclick="comprobarRespuestas()">
-        🔐 Comprobar respuestas
-    </button>
+        <div class="question">
+
+            <h3>
+                4. ¿Qué lugar elegiría para pasar unas vacaciones?
+            </h3>
+
+            <div class="options">
+
+                <label class="option">
+                    <input
+                        type="radio"
+                        name="pregunta4"
+                        value="a"
+                    >
+                    La playa 🏖️
+                </label>
+
+                <label class="option">
+                    <input
+                        type="radio"
+                        name="pregunta4"
+                        value="b"
+                    >
+                    La montaña 🏔️
+                </label>
+
+                <label class="option">
+                    <input
+                        type="radio"
+                        name="pregunta4"
+                        value="c"
+                    >
+                    Una gran ciudad 🌆
+                </label>
+
+                <label class="option">
+                    <input
+                        type="radio"
+                        name="pregunta4"
+                        value="d"
+                    >
+                    Un pueblo tranquilo 🌳
+                </label>
+
+            </div>
+
+        </div>
 
 
-    <div id="resultado1"></div>
+        <div class="question">
+
+            <h3>
+                5. ¿Qué prefiero?
+            </h3>
+
+            <div class="options">
+
+                <label class="option">
+                    <input
+                        type="radio"
+                        name="pregunta5"
+                        value="a"
+                    >
+                    Una película 🎬
+                </label>
+
+                <label class="option">
+                    <input
+                        type="radio"
+                        name="pregunta5"
+                        value="b"
+                    >
+                    Una serie 📺
+                </label>
+
+                <label class="option">
+                    <input
+                        type="radio"
+                        name="pregunta5"
+                        value="c"
+                    >
+                    Un concierto 🎵
+                </label>
+
+                <label class="option">
+                    <input
+                        type="radio"
+                        name="pregunta5"
+                        value="d"
+                    >
+                    Un videojuego 🎮
+                </label>
+
+            </div>
+
+        </div>
 
 
-    <button id="continuar1" onclick="mostrarPrueba2()">
-        👑 Siguiente prueba
-    </button>
-
-</section>
-
-
-
-<!-- =====================================================
-     PRUEBA 2
-===================================================== -->
-
-<section id="prueba2">
-
-    <div class="header">
-
-        <h1>👑 PRUEBA 2 👑</h1>
-
-        <p>
-            Ahora tendrás que demostrar que también tienes
-            buena cabeza...
-        </p>
-
-    </div>
-
-
-    <div class="rules">
-
-        <strong>¿Cómo se juega?</strong>
-
-        <ul>
-
-            <li>
-                👑 Coloca <strong>6 reinas</strong>.
-            </li>
-
-            <li>
-                Cada fila debe tener exactamente una reina.
-            </li>
-
-            <li>
-                Cada columna debe tener exactamente una reina.
-            </li>
-
-            <li>
-                Cada zona de color debe tener exactamente una reina.
-            </li>
-
-            <li>
-                Las reinas no pueden tocarse, ni siquiera en diagonal.
-            </li>
-
-            <li>
-                Haz clic una vez para ❌, otra vez para 👑 y otra vez para limpiar.
-            </li>
-
-        </ul>
-
-    </div>
-
-
-    <div class="game-info">
-
-        <span>
-            👑 Reinas:
-            <span id="contador">0</span>/6
-        </span>
-
-        <span>
-            ❌ Casillas marcadas:
-            <span id="marcadas">0</span>
-        </span>
-
-    </div>
-
-
-    <div class="board-container">
-
-        <div id="board" class="board"></div>
-
-    </div>
-
-
-    <div id="mensajeJuego"></div>
-
-
-    <button class="reset" onclick="reiniciarJuego()">
-        🔄 Reiniciar tablero
-    </button>
-
-
-    <div id="victoria">
-
-        <h2>🎉 ¡PRUEBA SUPERADA! 🎉</h2>
-
-        <p>
-            Has conseguido colocar las 6 reinas.
-        </p>
-
-        <p>
-            Pero todavía queda una última prueba...
-            👀
-        </p>
-
-        <button id="continuar2" onclick="prueba3()">
-            🎁 Continuar
+        <button onclick="comprobarRespuestas()">
+            🔐 Comprobar respuestas
         </button>
 
-    </div>
 
-</section>
+        <div id="resultado1"></div>
 
+
+        <button
+            id="continuar1"
+            onclick="mostrarPrueba2()"
+        >
+            👑 Siguiente prueba
+        </button>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PRUEBA 2
+    ===================================================== -->
+
+    <section id="prueba2">
+
+        <div class="header">
+
+            <h1>👑 PRUEBA 2 👑</h1>
+
+            <p>
+                Ahora tendrás que demostrar que también tienes
+                buena cabeza...
+            </p>
+
+        </div>
+
+
+        <div class="rules">
+
+            <strong>¿Cómo se juega?</strong>
+
+            <ul>
+
+                <li>
+                    👑 Coloca <strong>6 reinas</strong>.
+                </li>
+
+                <li>
+                    Cada fila debe tener exactamente una reina.
+                </li>
+
+                <li>
+                    Cada columna debe tener exactamente una reina.
+                </li>
+
+                <li>
+                    Cada zona de color debe tener exactamente
+                    una reina.
+                </li>
+
+                <li>
+                    Las reinas no pueden tocarse, ni siquiera
+                    en diagonal.
+                </li>
+
+                <li>
+                    Haz clic una vez para ❌, otra vez para 👑
+                    y otra vez para limpiar.
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="game-info">
+
+            <span>
+                👑 Reinas:
+                <span id="contador">0</span>/6
+            </span>
+
+            <span>
+                ❌ Casillas marcadas:
+                <span id="marcadas">0</span>
+            </span>
+
+        </div>
+
+
+        <div class="board-container">
+
+            <div
+                id="board"
+                class="board"
+            ></div>
+
+        </div>
+
+
+        <div id="mensajeJuego"></div>
+
+
+        <button
+            class="reset"
+            onclick="reiniciarJuego()"
+        >
+            🔄 Reiniciar tablero
+        </button>
+
+
+        <div id="victoria">
+
+            <h2>
+                🎉 ¡PRUEBA SUPERADA! 🎉
+            </h2>
+
+            <p>
+                Has conseguido colocar las 6 reinas.
+            </p>
+
+            <p>
+                Pero todavía queda otra prueba...
+                👀
+            </p>
+
+            <button
+                id="continuar2"
+                onclick="mostrarPrueba3()"
+            >
+                ✍️ Continuar
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PRUEBA 3
+    ===================================================== -->
+
+    <section id="prueba3">
+
+        <div class="header">
+
+            <h1>✍️ PRUEBA 3 ✍️</h1>
+
+            <p>
+                Ahora no tendrás ninguna respuesta entre
+                la que elegir...
+            </p>
+
+            <p>
+                <strong>
+                    Esta vez tendrás que escribirlas tú.
+                </strong>
+                👀
+            </p>
+
+        </div>
+
+
+        <div class="answer-question">
+
+            <h3>
+                1. ¿En qué ciudad nos conocimos?
+            </h3>
+
+            <input
+                type="text"
+                id="respuesta1"
+                class="answer-input"
+                placeholder="Escribe tu respuesta..."
+                autocomplete="off"
+            >
+
+        </div>
+
+
+        <div class="answer-question">
+
+            <h3>
+                2. ¿Cuál fue nuestra primera película juntos?
+            </h3>
+
+            <input
+                type="text"
+                id="respuesta2"
+                class="answer-input"
+                placeholder="Escribe tu respuesta..."
+                autocomplete="off"
+            >
+
+        </div>
+
+
+        <div class="answer-question">
+
+            <h3>
+                3. ¿Cuál es mi color favorito?
+            </h3>
+
+            <input
+                type="text"
+                id="respuesta3"
+                class="answer-input"
+                placeholder="Escribe tu respuesta..."
+                autocomplete="off"
+            >
+
+        </div>
+
+
+        <div class="answer-question">
+
+            <h3>
+                4. ¿Cuál es nuestro lugar favorito?
+            </h3>
+
+            <input
+                type="text"
+                id="respuesta4"
+                class="answer-input"
+                placeholder="Escribe tu respuesta..."
+                autocomplete="off"
+            >
+
+        </div>
+
+
+        <button onclick="comprobarRespuestas3()">
+            🔐 Comprobar respuestas
+        </button>
+
+
+        <div id="resultado3"></div>
+
+
+        <button
+            id="continuar3"
+            onclick="mostrarPrueba4()"
+        >
+            📸 Siguiente prueba
+        </button>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PRUEBA 4
+    ===================================================== -->
+
+    <section id="prueba4">
+
+        <div class="header">
+
+            <h1>📸 PRUEBA 4 📸</h1>
+
+            <p>
+                Ya queda muy poco...
+            </p>
+
+            <p>
+                <strong>
+                    Ahora tendrás que ordenar estos recuerdos
+                    cronológicamente.
+                </strong>
+            </p>
+
+        </div>
+
+
+        <div class="photo-instructions">
+
+            <strong>¿Cómo se juega?</strong>
+
+            <ul>
+
+                <li>
+                    📸 Ordena las 6 fotos desde la más antigua
+                    hasta la más reciente.
+                </li>
+
+                <li>
+                    🖱️ Puedes arrastrar las fotos para cambiar
+                    su posición.
+                </li>
+
+                <li>
+                    ⬆️⬇️ También puedes utilizar las flechas
+                    para moverlas.
+                </li>
+
+                <li>
+                    ❤️ Cuando creas que están correctamente
+                    ordenadas, pulsa "Comprobar".
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div
+            id="photoBoard"
+            class="photo-board"
+        ></div>
+
+
+        <button onclick="comprobarOrden()">
+            🔐 Comprobar orden
+        </button>
+
+
+        <div id="resultado4"></div>
+
+
+        <button
+            id="continuar4"
+            onclick="regaloFinal()"
+        >
+            🎁 Descubrir el regalo
+        </button>
+
+    </section>
 
 </div>
 
 
+
 <script>
+
 
 /* =========================================================
    PRUEBA 1
@@ -778,7 +1363,9 @@ function comprobarRespuestas() {
 
     let aciertos = 0;
 
-    for (let pregunta in respuestasCorrectas) {
+    for (
+        let pregunta in respuestasCorrectas
+    ) {
 
         const respuesta =
             document.querySelector(
@@ -787,7 +1374,8 @@ function comprobarRespuestas() {
 
         if (
             respuesta &&
-            respuesta.value === respuestasCorrectas[pregunta]
+            respuesta.value ===
+            respuestasCorrectas[pregunta]
         ) {
 
             aciertos++;
@@ -856,19 +1444,23 @@ function comprobarRespuestas() {
 
 
 /* =========================================================
-   CAMBIAR A PRUEBA 2
+   PASAR A PRUEBA 2
 ========================================================= */
 
 function mostrarPrueba2() {
 
-    document.getElementById("prueba1").style.display = "none";
+    document.getElementById("prueba1")
+        .style.display = "none";
 
-    document.getElementById("prueba2").style.display = "block";
+    document.getElementById("prueba2")
+        .style.display = "block";
+
 
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
+
 
     crearTablero();
 
@@ -876,17 +1468,8 @@ function mostrarPrueba2() {
 
 
 /* =========================================================
-   TABLERO QUEENS 6x6
+   PRUEBA 2 - QUEENS MASTER
 ========================================================= */
-
-
-/*
-    Cada número representa una región.
-
-    Hay exactamente 6 regiones.
-
-    El tablero es 6x6.
-*/
 
 const regiones = [
 
@@ -905,32 +1488,6 @@ const regiones = [
 ];
 
 
-/*
-    Solución del puzzle.
-
-    6 reinas.
-*/
-
-const solucion = [
-
-    [0,0],
-    [1,2],
-    [2,4],
-    [3,1],
-    [4,3],
-    [5,5]
-
-];
-
-
-/*
-    Estado de cada casilla:
-
-    0 = vacía
-    1 = X
-    2 = reina
-*/
-
 let estado = [];
 
 
@@ -943,16 +1500,26 @@ function crearTablero() {
     const board =
         document.getElementById("board");
 
+
     board.innerHTML = "";
 
     estado = [];
 
 
-    for (let fila = 0; fila < 6; fila++) {
+    for (
+        let fila = 0;
+        fila < 6;
+        fila++
+    ) {
 
         estado[fila] = [];
 
-        for (let columna = 0; columna < 6; columna++) {
+
+        for (
+            let columna = 0;
+            columna < 6;
+            columna++
+        ) {
 
             estado[fila][columna] = 0;
 
@@ -997,22 +1564,20 @@ function crearTablero() {
 
 
 /* =========================================================
-   CAMBIAR ESTADO DE CASILLA
+   CAMBIAR CASILLA
 ========================================================= */
 
-function cambiarCasilla(fila, columna) {
-
-    /*
-        Ciclo:
-
-        vacío → X
-        X → reina
-        reina → vacío
-    */
+function cambiarCasilla(
+    fila,
+    columna
+) {
 
     estado[fila][columna]++;
 
-    if (estado[fila][columna] > 2) {
+
+    if (
+        estado[fila][columna] > 2
+    ) {
 
         estado[fila][columna] = 0;
 
@@ -1041,64 +1606,66 @@ function actualizarTablero() {
     let contadorX = 0;
 
 
-    celdas.forEach((celda, indice) => {
+    celdas.forEach(
+        (celda, indice) => {
 
-        /*
-            AHORA EL TABLERO ES 6x6.
-        */
+            const fila =
+                Math.floor(indice / 6);
 
-        const fila =
-            Math.floor(indice / 6);
-
-        const columna =
-            indice % 6;
+            const columna =
+                indice % 6;
 
 
-        /*
-            Mantener siempre el mismo contenido
-            y tamaño de casilla.
-        */
+            celda.innerHTML = "";
 
-        celda.innerHTML = "";
-
-        celda.classList.remove("conflict");
+            celda.classList.remove(
+                "conflict"
+            );
 
 
-        if (estado[fila][columna] === 1) {
+            if (
+                estado[fila][columna] === 1
+            ) {
 
-            celda.innerHTML = "×";
+                celda.innerHTML = "×";
 
-            celda.classList.add("x");
+                celda.classList.add("x");
 
-            contadorX++;
+                contadorX++;
+
+            }
+
+
+            if (
+                estado[fila][columna] === 2
+            ) {
+
+                celda.innerHTML = "👑";
+
+                celda.classList.add("queen");
+
+                contadorReinas++;
+
+            }
 
         }
+    );
 
 
-        if (estado[fila][columna] === 2) {
-
-            celda.innerHTML = "👑";
-
-            celda.classList.add("queen");
-
-            contadorReinas++;
-
-        }
-
-    });
+    document.getElementById(
+        "contador"
+    ).textContent = contadorReinas;
 
 
-    document.getElementById("contador").textContent =
-        contadorReinas;
-
-    document.getElementById("marcadas").textContent =
-        contadorX;
+    document.getElementById(
+        "marcadas"
+    ).textContent = contadorX;
 
 }
 
 
 /* =========================================================
-   COMPROBAR CONFLICTOS
+   COMPROBAR TABLERO
 ========================================================= */
 
 function comprobarTablero() {
@@ -1106,11 +1673,21 @@ function comprobarTablero() {
     const reinas = [];
 
 
-    for (let fila = 0; fila < 6; fila++) {
+    for (
+        let fila = 0;
+        fila < 6;
+        fila++
+    ) {
 
-        for (let columna = 0; columna < 6; columna++) {
+        for (
+            let columna = 0;
+            columna < 6;
+            columna++
+        ) {
 
-            if (estado[fila][columna] === 2) {
+            if (
+                estado[fila][columna] === 2
+            ) {
 
                 reinas.push({
                     fila: fila,
@@ -1127,37 +1704,28 @@ function comprobarTablero() {
     let hayConflicto = false;
 
 
-    /*
-        Comprobar parejas de reinas.
-    */
+    for (
+        let i = 0;
+        i < reinas.length;
+        i++
+    ) {
 
-    for (let i = 0; i < reinas.length; i++) {
-
-        for (let j = i + 1; j < reinas.length; j++) {
+        for (
+            let j = i + 1;
+            j < reinas.length;
+            j++
+        ) {
 
             const a = reinas[i];
 
             const b = reinas[j];
 
 
-            /*
-                Misma fila
-            */
+            /* MISMA FILA */
 
-            if (a.fila === b.fila) {
-
-                hayConflicto = true;
-
-                marcarConflicto(a, b);
-
-            }
-
-
-            /*
-                Misma columna
-            */
-
-            if (a.columna === b.columna) {
+            if (
+                a.fila === b.fila
+            ) {
 
                 hayConflicto = true;
 
@@ -1166,9 +1734,20 @@ function comprobarTablero() {
             }
 
 
-            /*
-                Misma región
-            */
+            /* MISMA COLUMNA */
+
+            if (
+                a.columna === b.columna
+            ) {
+
+                hayConflicto = true;
+
+                marcarConflicto(a, b);
+
+            }
+
+
+            /* MISMA REGIÓN */
 
             if (
                 regiones[a.fila][a.columna] ===
@@ -1183,13 +1762,18 @@ function comprobarTablero() {
 
 
             /*
-                Las reinas no pueden tocarse
-                diagonalmente.
+                LAS REINAS NO PUEDEN TOCARSE
+                EN DIAGONAL
             */
 
             if (
-                Math.abs(a.fila - b.fila) === 1 &&
-                Math.abs(a.columna - b.columna) === 1
+                Math.abs(
+                    a.fila - b.fila
+                ) === 1 &&
+
+                Math.abs(
+                    a.columna - b.columna
+                ) === 1
             ) {
 
                 hayConflicto = true;
@@ -1200,13 +1784,19 @@ function comprobarTablero() {
 
 
             /*
-                Tampoco pueden estar pegadas
-                horizontal o verticalmente.
+                NO PUEDEN TOCARSE
+                HORIZONTAL O VERTICALMENTE
             */
 
             if (
-                Math.abs(a.fila - b.fila) <= 1 &&
-                Math.abs(a.columna - b.columna) <= 1 &&
+                Math.abs(
+                    a.fila - b.fila
+                ) <= 1 &&
+
+                Math.abs(
+                    a.columna - b.columna
+                ) <= 1 &&
+
                 (
                     a.fila !== b.fila ||
                     a.columna !== b.columna
@@ -1225,68 +1815,68 @@ function comprobarTablero() {
 
 
     const mensaje =
-        document.getElementById("mensajeJuego");
+        document.getElementById(
+            "mensajeJuego"
+        );
 
-
-    /*
-        Si hay conflicto
-    */
 
     if (hayConflicto) {
 
         mensaje.textContent =
             "❌ Hay una o más reinas en conflicto.";
 
-        mensaje.style.color = "#c62828";
+        mensaje.style.color =
+            "#c62828";
 
         return;
 
     }
 
-
-    /*
-        Si todavía no hay 6 reinas
-    */
 
     if (reinas.length < 6) {
 
         mensaje.textContent =
             "🧠 Sigue pensando...";
 
-        mensaje.style.color = "#666";
+        mensaje.style.color =
+            "#666";
 
         return;
 
     }
 
 
-    /*
-        Si hay 6 y no hay conflictos,
-        comprobamos las regiones.
-    */
+    const regionesUsadas =
+        new Set();
 
-    const regionesUsadas = new Set();
+    const filasUsadas =
+        new Set();
 
-    const filasUsadas = new Set();
-
-    const columnasUsadas = new Set();
+    const columnasUsadas =
+        new Set();
 
 
-    reinas.forEach(reina => {
+    reinas.forEach(
+        reina => {
 
-        regionesUsadas.add(
-            regiones[reina.fila][reina.columna]
-        );
+            regionesUsadas.add(
+                regiones[
+                    reina.fila
+                ][
+                    reina.columna
+                ]
+            );
 
-        filasUsadas.add(
-            reina.fila
-        );
+            filasUsadas.add(
+                reina.fila
+            );
 
-        columnasUsadas.add(
-            reina.columna
-        );
+            columnasUsadas.add(
+                reina.columna
+            );
 
-    });
+        }
+    );
 
 
     if (
@@ -1306,21 +1896,25 @@ function comprobarTablero() {
    MARCAR CONFLICTO
 ========================================================= */
 
-function marcarConflicto(a, b) {
-
-    /*
-        AHORA SON 6 COLUMNAS.
-    */
+function marcarConflicto(
+    a,
+    b
+) {
 
     const indiceA =
-        a.fila * 6 + a.columna;
+        a.fila * 6 +
+        a.columna;
+
 
     const indiceB =
-        b.fila * 6 + b.columna;
+        b.fila * 6 +
+        b.columna;
 
 
     const celdas =
-        document.querySelectorAll(".cell");
+        document.querySelectorAll(
+            ".cell"
+        );
 
 
     celdas[indiceA]
@@ -1334,56 +1928,67 @@ function marcarConflicto(a, b) {
 
 
 /* =========================================================
-   GANAR
+   GANAR PRUEBA 2
 ========================================================= */
 
 function ganarJuego() {
 
     const mensaje =
-        document.getElementById("mensajeJuego");
+        document.getElementById(
+            "mensajeJuego"
+        );
 
 
     mensaje.textContent =
         "🎉 ¡TABLERO COMPLETADO! 🎉";
 
+
     mensaje.style.color =
         "#218838";
 
 
-    document.getElementById("victoria")
-        .style.display = "block";
+    document.getElementById(
+        "victoria"
+    ).style.display = "block";
 
 
-    /*
-        Desactivamos el tablero.
-    */
+    document.getElementById(
+        "continuar2"
+    ).style.display = "block";
+
 
     const celdas =
-        document.querySelectorAll(".cell");
+        document.querySelectorAll(
+            ".cell"
+        );
 
 
-    celdas.forEach(celda => {
+    celdas.forEach(
+        celda => {
 
-        celda.style.pointerEvents =
-            "none";
+            celda.style.pointerEvents =
+                "none";
 
-    });
+        }
+    );
 
 }
 
 
 /* =========================================================
-   REINICIAR
+   REINICIAR TABLERO
 ========================================================= */
 
 function reiniciarJuego() {
 
-    document.getElementById("victoria")
-        .style.display = "none";
+    document.getElementById(
+        "victoria"
+    ).style.display = "none";
 
 
-    document.getElementById("mensajeJuego")
-        .textContent = "";
+    document.getElementById(
+        "mensajeJuego"
+    ).textContent = "";
 
 
     crearTablero();
@@ -1392,23 +1997,752 @@ function reiniciarJuego() {
 
 
 /* =========================================================
-   PRUEBA 3
+   PASAR A PRUEBA 3
 ========================================================= */
 
-function prueba3() {
+function mostrarPrueba3() {
 
-    alert(
-        "🎁 ¡PRUEBA 3 DESBLOQUEADA! 🎁"
-    );
+    document.getElementById(
+        "prueba2"
+    ).style.display = "none";
 
-    /*
-        Aquí añadiremos posteriormente
-        la tercera prueba.
-    */
+
+    document.getElementById(
+        "prueba3"
+    ).style.display = "block";
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 
 }
 
+
+/* =========================================================
+   PRUEBA 3 - RESPUESTAS
+========================================================= */
+
+
+/*
+    CAMBIA ESTAS RESPUESTAS POR LAS TUYAS.
+*/
+
+const respuestasPrueba3 = {
+
+    respuesta1: "barcelona",
+
+    respuesta2: "toy story",
+
+    respuesta3: "azul",
+
+    respuesta4: "paris"
+
+};
+
+
+function normalizarRespuesta(
+    texto
+) {
+
+    return texto
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(
+            /[\u0300-\u036f]/g,
+            ""
+        )
+        .trim();
+
+}
+
+
+function comprobarRespuestas3() {
+
+    let aciertos = 0;
+
+
+    for (
+        let pregunta in
+        respuestasPrueba3
+    ) {
+
+        const input =
+            document.getElementById(
+                pregunta
+            );
+
+
+        const respuestaUsuario =
+            normalizarRespuesta(
+                input.value
+            );
+
+
+        const respuestaCorrecta =
+            normalizarRespuesta(
+                respuestasPrueba3[
+                    pregunta
+                ]
+            );
+
+
+        if (
+            respuestaUsuario ===
+            respuestaCorrecta
+        ) {
+
+            aciertos++;
+
+        }
+
+    }
+
+
+    const resultado =
+        document.getElementById(
+            "resultado3"
+        );
+
+
+    const continuar =
+        document.getElementById(
+            "continuar3"
+        );
+
+
+    resultado.style.display =
+        "block";
+
+
+    if (
+        aciertos === 4
+    ) {
+
+        resultado.className =
+            "correcto";
+
+
+        resultado.innerHTML = `
+
+            <h2>🎉 ¡INCREÍBLE! 🎉</h2>
+
+            <p>
+                Has acertado las
+                <strong>4 preguntas</strong>.
+            </p>
+
+            <p>
+                Ya estás muy cerca del final... 👀❤️
+            </p>
+
+        `;
+
+
+        continuar.style.display =
+            "block";
+
+    }
+
+    else {
+
+        resultado.className =
+            "incorrecto";
+
+
+        resultado.innerHTML = `
+
+            <h2>❌ Casi...</h2>
+
+            <p>
+                Has acertado
+                <strong>${aciertos}/4</strong>.
+            </p>
+
+            <p>
+                Tienes que acertarlas todas
+                para continuar ❤️
+            </p>
+
+        `;
+
+
+        continuar.style.display =
+            "none";
+
+    }
+
+}
+
+
+/* =========================================================
+   PRUEBA 4 - FOTOS
+========================================================= */
+
+
+/*
+    COLOCA ESTAS 6 FOTOS EN LA MISMA
+    CARPETA QUE EL HTML:
+
+        foto1.jpg
+        foto2.jpg
+        foto3.jpg
+        foto4.jpg
+        foto5.jpg
+        foto6.jpg
+
+
+    El orden correcto será:
+
+        foto1
+        foto2
+        foto3
+        foto4
+        foto5
+        foto6
+*/
+
+const fotos = [
+
+    {
+        id: 1,
+        imagen: "foto1.jpg",
+        titulo: "Recuerdo 1"
+    },
+
+    {
+        id: 2,
+        imagen: "foto2.jpg",
+        titulo: "Recuerdo 2"
+    },
+
+    {
+        id: 3,
+        imagen: "foto3.jpg",
+        titulo: "Recuerdo 3"
+    },
+
+    {
+        id: 4,
+        imagen: "foto4.jpg",
+        titulo: "Recuerdo 4"
+    },
+
+    {
+        id: 5,
+        imagen: "foto5.jpg",
+        titulo: "Recuerdo 5"
+    },
+
+    {
+        id: 6,
+        imagen: "foto6.jpg",
+        titulo: "Recuerdo 6"
+    }
+
+];
+
+
+let ordenFotos = [];
+
+let elementoArrastrado = null;
+
+
+/* =========================================================
+   PASAR A PRUEBA 4
+========================================================= */
+
+function mostrarPrueba4() {
+
+    document.getElementById(
+        "prueba3"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "prueba4"
+    ).style.display = "block";
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+
+    crearFotos();
+
+}
+
+
+/* =========================================================
+   CREAR FOTOS
+========================================================= */
+
+function crearFotos() {
+
+    const photoBoard =
+        document.getElementById(
+            "photoBoard"
+        );
+
+
+    photoBoard.innerHTML = "";
+
+
+    ordenFotos =
+        [...fotos];
+
+
+    /*
+        Mezclar aleatoriamente.
+    */
+
+    ordenFotos.sort(
+        () =>
+            Math.random() - 0.5
+    );
+
+
+    renderizarFotos();
+
+}
+
+
+/* =========================================================
+   RENDERIZAR FOTOS
+========================================================= */
+
+function renderizarFotos() {
+
+    const photoBoard =
+        document.getElementById(
+            "photoBoard"
+        );
+
+
+    photoBoard.innerHTML = "";
+
+
+    ordenFotos.forEach(
+        (foto, indice) => {
+
+            const tarjeta =
+                document.createElement(
+                    "div"
+                );
+
+
+            tarjeta.className =
+                "photo-card";
+
+
+            tarjeta.draggable =
+                true;
+
+
+            tarjeta.dataset.id =
+                foto.id;
+
+
+            tarjeta.innerHTML = `
+
+                <div class="photo-number">
+                    ${indice + 1}
+                </div>
+
+                <img
+                    src="${foto.imagen}"
+                    alt="${foto.titulo}"
+                >
+
+                <div class="photo-title">
+                    ${foto.titulo}
+                </div>
+
+                <div class="photo-buttons">
+
+                    <button
+                        onclick="moverFoto(${indice}, -1)"
+                        type="button"
+                    >
+                        ▲
+                    </button>
+
+                    <button
+                        onclick="moverFoto(${indice}, 1)"
+                        type="button"
+                    >
+                        ▼
+                    </button>
+
+                </div>
+
+            `;
+
+
+            tarjeta.addEventListener(
+                "dragstart",
+                comenzarArrastre
+            );
+
+
+            tarjeta.addEventListener(
+                "dragend",
+                terminarArrastre
+            );
+
+
+            tarjeta.addEventListener(
+                "dragover",
+                permitirSoltar
+            );
+
+
+            tarjeta.addEventListener(
+                "drop",
+                soltarFoto
+            );
+
+
+            photoBoard.appendChild(
+                tarjeta
+            );
+
+        }
+    );
+
+
+    actualizarNumeros();
+
+}
+
+
+/* =========================================================
+   DRAG & DROP
+========================================================= */
+
+function comenzarArrastre(
+    event
+) {
+
+    elementoArrastrado =
+        event.currentTarget;
+
+
+    elementoArrastrado
+        .classList.add(
+            "dragging"
+        );
+
+}
+
+
+function terminarArrastre(
+    event
+) {
+
+    event.currentTarget
+        .classList.remove(
+            "dragging"
+        );
+
+}
+
+
+function permitirSoltar(
+    event
+) {
+
+    event.preventDefault();
+
+}
+
+
+function soltarFoto(
+    event
+) {
+
+    event.preventDefault();
+
+
+    const destino =
+        event.currentTarget;
+
+
+    if (
+        !elementoArrastrado ||
+        elementoArrastrado === destino
+    ) {
+
+        return;
+
+    }
+
+
+    const board =
+        document.getElementById(
+            "photoBoard"
+        );
+
+
+    const tarjetas =
+        [
+            ...board.children
+        ];
+
+
+    const posicionOrigen =
+        tarjetas.indexOf(
+            elementoArrastrado
+        );
+
+
+    const posicionDestino =
+        tarjetas.indexOf(
+            destino
+        );
+
+
+    /*
+        Cambiar array.
+    */
+
+    const temporal =
+        ordenFotos[
+            posicionOrigen
+        ];
+
+
+    ordenFotos[
+        posicionOrigen
+    ] =
+        ordenFotos[
+            posicionDestino
+        ];
+
+
+    ordenFotos[
+        posicionDestino
+    ] =
+        temporal;
+
+
+    /*
+        Volver a dibujar.
+    */
+
+    renderizarFotos();
+
+
+    elementoArrastrado =
+        null;
+
+}
+
+
+/* =========================================================
+   MOVER CON FLECHAS
+========================================================= */
+
+function moverFoto(
+    indice,
+    direccion
+) {
+
+    const nuevaPosicion =
+        indice + direccion;
+
+
+    if (
+        nuevaPosicion < 0 ||
+        nuevaPosicion >=
+        ordenFotos.length
+    ) {
+
+        return;
+
+    }
+
+
+    const temporal =
+        ordenFotos[indice];
+
+
+    ordenFotos[indice] =
+        ordenFotos[
+            nuevaPosicion
+        ];
+
+
+    ordenFotos[
+        nuevaPosicion
+    ] =
+        temporal;
+
+
+    renderizarFotos();
+
+}
+
+
+/* =========================================================
+   ACTUALIZAR NÚMEROS
+========================================================= */
+
+function actualizarNumeros() {
+
+    const tarjetas =
+        document.querySelectorAll(
+            ".photo-card"
+        );
+
+
+    tarjetas.forEach(
+        (tarjeta, indice) => {
+
+            tarjeta.querySelector(
+                ".photo-number"
+            ).textContent =
+                indice + 1;
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   COMPROBAR ORDEN
+========================================================= */
+
+function comprobarOrden() {
+
+    let correcto = true;
+
+
+    ordenFotos.forEach(
+        (foto, indice) => {
+
+            if (
+                foto.id !==
+                indice + 1
+            ) {
+
+                correcto = false;
+
+            }
+
+        }
+    );
+
+
+    const resultado =
+        document.getElementById(
+            "resultado4"
+        );
+
+
+    const continuar =
+        document.getElementById(
+            "continuar4"
+        );
+
+
+    resultado.style.display =
+        "block";
+
+
+    if (correcto) {
+
+        resultado.className =
+            "correcto";
+
+
+        resultado.innerHTML = `
+
+            <h2>🎉 ¡LO HAS CONSEGUIDO! 🎉</h2>
+
+            <p>
+                Has colocado correctamente
+                las 6 fotos.
+            </p>
+
+            <p>
+                Has llegado al final... ❤️
+            </p>
+
+        `;
+
+
+        continuar.style.display =
+            "block";
+
+
+        document
+            .querySelectorAll(
+                ".photo-card"
+            )
+            .forEach(
+                card => {
+
+                    card.classList.add(
+                        "correct-position"
+                    );
+
+                }
+            );
+
+    }
+
+    else {
+
+        resultado.className =
+            "incorrecto";
+
+
+        resultado.innerHTML = `
+
+            <h2>❌ Todavía no...</h2>
+
+            <p>
+                Algunas fotos todavía
+                no están en su sitio.
+            </p>
+
+            <p>
+                ¡Inténtalo otra vez! ❤️
+            </p>
+
+        `;
+
+
+        continuar.style.display =
+            "none";
+
+    }
+
+}
+
+
+/* =========================================================
+   REGALO FINAL
+========================================================= */
+
+function regaloFinal() {
+
+    alert(
+        "🎁 ¡HAS SUPERADO TODAS LAS PRUEBAS! ❤️"
+    );
+
+}
+
+
 </script>
 
+
 </body>
+
 </html>
+```
