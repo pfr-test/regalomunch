@@ -483,145 +483,148 @@
         }
 
 
-        /* =====================================================
-           PRUEBA 4
+       /* =====================================================
+           PRUEBA 4 - TARJETAS DE FOTOS
         ===================================================== */
-
-        #prueba4 {
-            display: none;
-        }
-
-        .photo-instructions {
-            background: #fff7fa;
-
-            border-radius: 15px;
-
-            padding: 18px;
-
-            margin-bottom: 25px;
-
-            color: #555;
-
-            line-height: 1.6;
-        }
-
+        
         .photo-board {
             display: flex;
-
             flex-direction: column;
-
-            gap: 12px;
-
+            gap: 15px;
             margin: 25px 0;
         }
-
+        
+        
+        /* TARJETA */
+        
         .photo-card {
             display: flex;
-
             align-items: center;
-
-            gap: 15px;
-
+            gap: 18px;
+        
             background: white;
-
+        
             border: 3px solid #ddd;
-
             border-radius: 15px;
-
-            padding: 10px;
-
+        
+            padding: 12px;
+        
             cursor: grab;
-
+        
             transition:
                 transform 0.2s,
                 border-color 0.2s,
                 box-shadow 0.2s;
-
+        
             user-select: none;
+        
+            min-height: 150px;
         }
-
+        
+        
         .photo-card:hover {
             border-color: #e75480;
-
+        
             box-shadow:
-                0 5px 15px rgba(0, 0, 0, 0.1);
+                0 5px 15px rgba(0,0,0,0.1);
         }
-
+        
+        
         .photo-card.dragging {
             opacity: 0.5;
-
-            transform: scale(0.97);
+            transform: scale(0.98);
         }
-
+        
+        
         .photo-card.correct-position {
             border-color: #28a745;
         }
-
+        
+        
+        /* =====================================================
+           NÚMERO DE POSICIÓN
+        ===================================================== */
+        
         .photo-number {
-            width: 38px;
-            height: 38px;
-
-            min-width: 38px;
-
+        
+            width: 42px;
+            height: 42px;
+        
+            min-width: 42px;
+        
             display: flex;
-
+        
             justify-content: center;
             align-items: center;
-
+        
             background: #e75480;
-
+        
             color: white;
-
+        
             border-radius: 50%;
-
+        
             font-weight: bold;
-
-            font-size: 18px;
+        
+            font-size: 19px;
         }
-
+        
+        
+        /* =====================================================
+           FOTOGRAFÍA
+        ===================================================== */
+        
         .photo-card img {
-            width: 150px;
-            height: 100px;
-
+        
+            width: 240px;
+            height: 150px;
+        
             object-fit: cover;
-
-            border-radius: 10px;
-
+        
+            border-radius: 12px;
+        
             background: #eee;
-
+        
             flex-shrink: 0;
+        
+            display: block;
         }
-
-        .photo-title {
-            font-weight: bold;
-            color: #444;
-        }
-
+        
+        
+        /* =====================================================
+           BOTONES DE LAS FOTOS
+        ===================================================== */
+        
         .photo-buttons {
+        
             display: flex;
-
+        
             flex-direction: column;
-
-            gap: 5px;
-
+        
+            gap: 6px;
+        
             margin-left: auto;
         }
-
+        
+        
         .photo-buttons button {
-            width: 40px;
-            height: 35px;
-
+        
+            width: 42px;
+            height: 38px;
+        
             padding: 0;
-
+        
             border-radius: 8px;
-
+        
             font-size: 18px;
-
+        
             background: #777;
         }
-
+        
+        
         .photo-buttons button:hover {
+        
             background: #e75480;
+        
         }
 
 
