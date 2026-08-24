@@ -2067,234 +2067,796 @@
 
 
 
-    /* =====================================================
-       PRUEBA 4 - FOTOS
-    ===================================================== */
+   /* =====================================================
+   PRUEBA 4 - FOTOS
+===================================================== */
+
+/*
+    Las fotos están alojadas en GitHub.
+
+    Repositorio:
+    https://github.com/pfr-test/regalomunch
+
+    Los archivos deben estar en la carpeta principal
+    del repositorio:
+
+    foto1.jpg
+    foto2.jpg
+    foto3.jpg
+    foto4.jpg
+    foto5.jpg
+    foto6.jpg
+
+    ORDEN CORRECTO:
+
+    foto1 → foto2 → foto3 → foto4 → foto5 → foto6
+*/
+
+
+const fotos = [
+
+    {
+        id: 1,
+        imagen: "https://raw.githubusercontent.com/pfr-test/regalomunch/main/foto1.jpg",
+        titulo: "Recuerdo 1"
+    },
+
+    {
+        id: 2,
+        imagen: "https://raw.githubusercontent.com/pfr-test/regalomunch/main/foto2.jpg",
+        titulo: "Recuerdo 2"
+    },
+
+    {
+        id: 3,
+        imagen: "https://raw.githubusercontent.com/pfr-test/regalomunch/main/foto3.jpg",
+        titulo: "Recuerdo 3"
+    },
+
+    {
+        id: 4,
+        imagen: "https://raw.githubusercontent.com/pfr-test/regalomunch/main/foto4.jpg",
+        titulo: "Recuerdo 4"
+    },
+
+    {
+        id: 5,
+        imagen: "https://raw.githubusercontent.com/pfr-test/regalomunch/main/foto5.jpg",
+        titulo: "Recuerdo 5"
+    },
+
+    {
+        id: 6,
+        imagen: "https://raw.githubusercontent.com/pfr-test/regalomunch/main/foto6.jpg",
+        titulo: "Recuerdo 6"
+    }
+
+];
+
+
+/*
+    Aquí se guarda el orden actual
+    de las fotografías.
+*/
+
+let ordenFotos = [];
+
+
+/*
+    Fotografía que estamos arrastrando.
+*/
+
+let elementoArrastrado = null;
+
+
+
+/* =====================================================
+   PASAR A PRUEBA 4
+===================================================== */
+
+function mostrarPrueba4() {
 
     /*
-        COLOCA LAS FOTOS EN LA MISMA CARPETA
-        QUE ESTE ARCHIVO:
-
-        foto1.jpg
-        foto2.jpg
-        foto3.jpg
-        foto4.jpg
-        foto5.jpg
-        foto6.jpg
-
-        El orden correcto será:
-
-        foto1 → foto2 → foto3 → foto4 → foto5 → foto6
+        Ocultar Prueba 3.
     */
 
-    const fotos = [
-
-        {
-            id: 1,
-            imagen: "foto1.jpg",
-            titulo: "Recuerdo 1"
-        },
-
-        {
-            id: 2,
-            imagen: "foto2.jpg",
-            titulo: "Recuerdo 2"
-        },
-
-        {
-            id: 3,
-            imagen: "foto3.jpg",
-            titulo: "Recuerdo 3"
-        },
-
-        {
-            id: 4,
-            imagen: "foto4.jpg",
-            titulo: "Recuerdo 4"
-        },
-
-        {
-            id: 5,
-            imagen: "foto5.jpg",
-            titulo: "Recuerdo 5"
-        },
-
-        {
-            id: 6,
-            imagen: "foto6.jpg",
-            titulo: "Recuerdo 6"
-        }
-
-    ];
+    document.getElementById(
+        "prueba3"
+    ).style.display = "none";
 
 
-    let ordenFotos = [];
+    /*
+        Mostrar Prueba 4.
+    */
 
-    let elementoArrastrado = null;
+    document.getElementById(
+        "prueba4"
+    ).style.display = "block";
+
+
+    /*
+        Subir al principio de la página.
+    */
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+
+    /*
+        Crear un orden aleatorio
+        de las fotografías.
+    */
+
+    crearFotos();
+
+}
 
 
 
-    /* =====================================================
-       PASAR A PRUEBA 4
-    ===================================================== */
+/* =====================================================
+   CREAR FOTOS
+===================================================== */
 
-    function mostrarPrueba4() {
+function crearFotos() {
 
-        document.getElementById(
-            "prueba3"
-        ).style.display = "none";
+    /*
+        Hacemos una copia del array original.
 
+        De esta manera "fotos" siempre mantiene
+        el orden correcto 1-2-3-4-5-6.
+    */
 
-        document.getElementById(
-            "prueba4"
-        ).style.display = "block";
-
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+    ordenFotos = [...fotos];
 
 
-        crearFotos();
-    }
+    /*
+        Mezcla aleatoria utilizando
+        el algoritmo Fisher-Yates.
+    */
 
+    for (
+        let i = ordenFotos.length - 1;
+        i > 0;
+        i--
+    ) {
 
-
-    /* =====================================================
-       CREAR FOTOS
-    ===================================================== */
-
-    function crearFotos() {
-
-        ordenFotos =
-            [...fotos];
-
-
-        /*
-            Mezclar las fotos.
-        */
-
-        ordenFotos.sort(
-            function () {
-                return Math.random() - 0.5;
-            }
-        );
-
-
-        renderizarFotos();
-    }
-
-
-
-    /* =====================================================
-       RENDERIZAR FOTOS
-    ===================================================== */
-
-    function renderizarFotos() {
-
-        const photoBoard =
-            document.getElementById(
-                "photoBoard"
+        const j =
+            Math.floor(
+                Math.random() * (i + 1)
             );
 
 
-        photoBoard.innerHTML = "";
+        const temporal =
+            ordenFotos[i];
 
 
-        ordenFotos.forEach(
+        ordenFotos[i] =
+            ordenFotos[j];
+
+
+        ordenFotos[j] =
+            temporal;
+
+    }
+
+
+    /*
+        Comprobamos que no haya salido
+        casualmente el orden correcto.
+
+        Si ha salido:
+
+        1 → 2 → 3 → 4 → 5 → 6
+
+        volvemos a mezclar.
+    */
+
+    const estaOrdenado =
+        ordenFotos.every(
             function (foto, indice) {
 
-                const tarjeta =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                tarjeta.className =
-                    "photo-card";
-
-
-                tarjeta.draggable =
-                    true;
-
-
-                tarjeta.dataset.id =
-                    foto.id;
-
-
-                tarjeta.innerHTML = `
-
-                    <div class="photo-number">
-                        ${indice + 1}
-                    </div>
-
-                    <img
-                        src="${foto.imagen}"
-                        alt="${foto.titulo}"
-                    >
-
-                    <div class="photo-title">
-                        ${foto.titulo}
-                    </div>
-
-                    <div class="photo-buttons">
-
-                        <button
-                            type="button"
-                            onclick="moverFoto(${indice}, -1)"
-                        >
-                            ▲
-                        </button>
-
-                        <button
-                            type="button"
-                            onclick="moverFoto(${indice}, 1)"
-                        >
-                            ▼
-                        </button>
-
-                    </div>
-
-                `;
-
-
-                tarjeta.addEventListener(
-                    "dragstart",
-                    comenzarArrastre
-                );
-
-
-                tarjeta.addEventListener(
-                    "dragend",
-                    terminarArrastre
-                );
-
-
-                tarjeta.addEventListener(
-                    "dragover",
-                    permitirSoltar
-                );
-
-
-                tarjeta.addEventListener(
-                    "drop",
-                    soltarFoto
-                );
-
-
-                photoBoard.appendChild(
-                    tarjeta
-                );
+                return foto.id === indice + 1;
 
             }
         );
 
 
-        actualizarNumeros();
+    if (estaOrdenado) {
+
+        crearFotos();
+
+        return;
+
     }
 
 
+    /*
+        Mostrar las fotos.
+    */
+
+    renderizarFotos();
+
+}
+
+
+
+/* =====================================================
+   RENDERIZAR FOTOS
+===================================================== */
+
+function renderizarFotos() {
+
+    const photoBoard =
+        document.getElementById(
+            "photoBoard"
+        );
+
+
+    /*
+        Limpiar el tablero.
+    */
+
+    photoBoard.innerHTML = "";
+
+
+    /*
+        Crear cada fotografía.
+    */
+
+    ordenFotos.forEach(
+        function (foto, indice) {
+
+            const tarjeta =
+                document.createElement(
+                    "div"
+                );
+
+
+            /*
+                Clase principal.
+            */
+
+            tarjeta.className =
+                "photo-card";
+
+
+            /*
+                Permitir arrastrar.
+            */
+
+            tarjeta.draggable =
+                true;
+
+
+            /*
+                Guardar el ID de la foto.
+            */
+
+            tarjeta.dataset.id =
+                foto.id;
+
+
+            /*
+                Contenido de la tarjeta.
+            */
+
+            tarjeta.innerHTML = `
+
+                <div class="photo-number">
+                    ${indice + 1}
+                </div>
+
+                <img
+                    src="${foto.imagen}"
+                    alt="${foto.titulo}"
+                    draggable="false"
+                >
+
+                <div class="photo-title">
+                    ${foto.titulo}
+                </div>
+
+                <div class="photo-buttons">
+
+                    <button
+                        type="button"
+                        onclick="moverFoto(${indice}, -1)"
+                    >
+                        ▲
+                    </button>
+
+                    <button
+                        type="button"
+                        onclick="moverFoto(${indice}, 1)"
+                    >
+                        ▼
+                    </button>
+
+                </div>
+
+            `;
+
+
+            /*
+                Cuando empieza a arrastrarse.
+            */
+
+            tarjeta.addEventListener(
+                "dragstart",
+                comenzarArrastre
+            );
+
+
+            /*
+                Cuando termina el arrastre.
+            */
+
+            tarjeta.addEventListener(
+                "dragend",
+                terminarArrastre
+            );
+
+
+            /*
+                Permitir soltar otra fotografía
+                encima de esta.
+            */
+
+            tarjeta.addEventListener(
+                "dragover",
+                permitirSoltar
+            );
+
+
+            /*
+                Cuando soltamos una fotografía.
+            */
+
+            tarjeta.addEventListener(
+                "drop",
+                soltarFoto
+            );
+
+
+            /*
+                Añadir tarjeta al tablero.
+            */
+
+            photoBoard.appendChild(
+                tarjeta
+            );
+
+        }
+    );
+
+
+    /*
+        Actualizar números.
+    */
+
+    actualizarNumeros();
+
+}
+
+
+
+/* =====================================================
+   COMENZAR ARRASTRE
+===================================================== */
+
+function comenzarArrastre(event) {
+
+    elementoArrastrado =
+        event.currentTarget;
+
+
+    elementoArrastrado.classList.add(
+        "dragging"
+    );
+
+}
+
+
+
+/* =====================================================
+   TERMINAR ARRASTRE
+===================================================== */
+
+function terminarArrastre(event) {
+
+    event.currentTarget.classList.remove(
+        "dragging"
+    );
+
+
+    elementoArrastrado = null;
+
+}
+
+
+
+/* =====================================================
+   PERMITIR SOLTAR
+===================================================== */
+
+function permitirSoltar(event) {
+
+    /*
+        Necesario para permitir
+        el evento "drop".
+    */
+
+    event.preventDefault();
+
+}
+
+
+
+/* =====================================================
+   SOLTAR FOTO
+===================================================== */
+
+function soltarFoto(event) {
+
+    event.preventDefault();
+
+
+    /*
+        Si no hay ninguna fotografía
+        siendo arrastrada, no hacemos nada.
+    */
+
+    if (!elementoArrastrado) {
+
+        return;
+
+    }
+
+
+    /*
+        Fotografía sobre la que hemos soltado.
+    */
+
+    const destino =
+        event.currentTarget;
+
+
+    /*
+        No hacemos nada si soltamos
+        sobre la misma fotografía.
+    */
+
+    if (
+        elementoArrastrado === destino
+    ) {
+
+        return;
+
+    }
+
+
+    /*
+        Obtener todas las tarjetas.
+    */
+
+    const tarjetas =
+        [
+            ...document.querySelectorAll(
+                ".photo-card"
+            )
+        ];
+
+
+    /*
+        Posición de origen.
+    */
+
+    const posicionOrigen =
+        tarjetas.indexOf(
+            elementoArrastrado
+        );
+
+
+    /*
+        Posición de destino.
+    */
+
+    const posicionDestino =
+        tarjetas.indexOf(
+            destino
+        );
+
+
+    /*
+        Intercambiar las fotografías
+        dentro del array.
+    */
+
+    const temporal =
+        ordenFotos[posicionOrigen];
+
+
+    ordenFotos[posicionOrigen] =
+        ordenFotos[posicionDestino];
+
+
+    ordenFotos[posicionDestino] =
+        temporal;
+
+
+    /*
+        Volvemos a dibujar el tablero.
+
+        Esto hace que los números y las
+        posiciones se actualicen correctamente.
+    */
+
+    renderizarFotos();
+
+
+    /*
+        Reiniciar elemento arrastrado.
+    */
+
+    elementoArrastrado = null;
+
+}
+
+
+
+/* =====================================================
+   MOVER FOTO CON LAS FLECHAS
+===================================================== */
+
+function moverFoto(indice, direccion) {
+
+    /*
+        Calcular nueva posición.
+    */
+
+    const nuevaPosicion =
+        indice + direccion;
+
+
+    /*
+        Si intentamos subir la primera foto
+        o bajar la última, no hacemos nada.
+    */
+
+    if (
+        nuevaPosicion < 0 ||
+        nuevaPosicion >= ordenFotos.length
+    ) {
+
+        return;
+
+    }
+
+
+    /*
+        Intercambiar las fotografías.
+    */
+
+    const temporal =
+        ordenFotos[indice];
+
+
+    ordenFotos[indice] =
+        ordenFotos[nuevaPosicion];
+
+
+    ordenFotos[nuevaPosicion] =
+        temporal;
+
+
+    /*
+        Actualizar el tablero.
+    */
+
+    renderizarFotos();
+
+}
+
+
+
+/* =====================================================
+   ACTUALIZAR NÚMEROS
+===================================================== */
+
+function actualizarNumeros() {
+
+    const tarjetas =
+        document.querySelectorAll(
+            ".photo-card"
+        );
+
+
+    tarjetas.forEach(
+        function (tarjeta, indice) {
+
+            const numero =
+                tarjeta.querySelector(
+                    ".photo-number"
+                );
+
+
+            numero.textContent =
+                indice + 1;
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   COMPROBAR ORDEN
+===================================================== */
+
+function comprobarOrden() {
+
+    let correcto = true;
+
+
+    /*
+        El orden correcto siempre es:
+
+        FOTO 1
+        FOTO 2
+        FOTO 3
+        FOTO 4
+        FOTO 5
+        FOTO 6
+    */
+
+    ordenFotos.forEach(
+        function (foto, indice) {
+
+            if (
+                foto.id !== indice + 1
+            ) {
+
+                correcto = false;
+
+            }
+
+        }
+    );
+
+
+    /*
+        Obtener elementos de resultado.
+    */
+
+    const resultado =
+        document.getElementById(
+            "resultado4"
+        );
+
+
+    const continuar =
+        document.getElementById(
+            "continuar4"
+        );
+
+
+    resultado.style.display =
+        "block";
+
+
+    /*
+        ORDEN CORRECTO
+    */
+
+    if (correcto) {
+
+        resultado.className =
+            "correcto";
+
+
+        resultado.innerHTML = `
+
+            <h2>
+                🎉 ¡LO HAS CONSEGUIDO! 🎉
+            </h2>
+
+            <p>
+                Has colocado correctamente
+                las 6 fotos.
+            </p>
+
+            <p>
+                Has llegado al final... ❤️
+            </p>
+
+        `;
+
+
+        /*
+            Mostrar botón del regalo.
+        */
+
+        continuar.style.display =
+            "block";
+
+
+        /*
+            Marcar todas las fotos
+            como correctas.
+        */
+
+        document
+            .querySelectorAll(
+                ".photo-card"
+            )
+            .forEach(
+                function (card) {
+
+                    card.classList.add(
+                        "correct-position"
+                    );
+
+                }
+            );
+
+    }
+
+
+    /*
+        ORDEN INCORRECTO
+    */
+
+    else {
+
+        resultado.className =
+            "incorrecto";
+
+
+        resultado.innerHTML = `
+
+            <h2>
+                ❌ Todavía no...
+            </h2>
+
+            <p>
+                Algunas fotos todavía
+                no están en su sitio.
+            </p>
+
+            <p>
+                ¡Inténtalo otra vez! ❤️
+            </p>
+
+        `;
+
+
+        /*
+            Ocultar botón del regalo.
+        */
+
+        continuar.style.display =
+            "none";
+
+    }
+
+}
+
+
+
+/* =====================================================
+   REGALO FINAL
+===================================================== */
+
+function regaloFinal() {
+
+    alert(
+        "🎁 ¡HAS SUPERADO TODAS LAS PRUEBAS! ❤️"
+    );
+
+}
 
     /* =====================================================
        DRAG & DROP
