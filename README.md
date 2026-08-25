@@ -486,7 +486,11 @@
        /* =====================================================
            PRUEBA 4 - TARJETAS DE FOTOS
         ===================================================== */
-        
+
+        #prueba4 {
+            display: none;
+        }
+
         .photo-board {
             display: flex;
             flex-direction: column;
