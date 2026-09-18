@@ -2351,13 +2351,9 @@ function renderizarFotos() {
 
                 <img
                     src="${foto.imagen}"
-                    alt="${foto.titulo}"
+                    alt="Fotografía"
                     draggable="false"
                 >
-
-                <div class="photo-title">
-                    ${foto.titulo}
-                </div>
 
                 <div class="photo-buttons">
 
