@@ -781,7 +781,7 @@
         <div class="question">
 
             <h3>
-                1. ¿Cuál es mi comida favorita?
+                1. ¿Cuántos países hemos visitado?
             </h3>
 
             <div class="options">
@@ -792,7 +792,7 @@
                         name="pregunta1"
                         value="a"
                     >
-                    Pizza
+                    8
                 </label>
 
                 <label class="option">
@@ -801,7 +801,7 @@
                         name="pregunta1"
                         value="b"
                     >
-                    Sushi
+                   9
                 </label>
 
                 <label class="option">
@@ -810,7 +810,7 @@
                         name="pregunta1"
                         value="c"
                     >
-                    Hamburguesa
+                    6
                 </label>
 
                 <label class="option">
@@ -819,7 +819,7 @@
                         name="pregunta1"
                         value="d"
                     >
-                    Pasta
+                    7
                 </label>
 
             </div>
@@ -830,7 +830,7 @@
         <div class="question">
 
             <h3>
-                2. ¿Cuál fue nuestro primer plan juntos?
+                2. ¿Cuál fue la mejor banda de música del la época del pleistoceno?
             </h3>
 
             <div class="options">
@@ -841,7 +841,7 @@
                         name="pregunta2"
                         value="a"
                     >
-                    Ir al cine
+                    U2
                 </label>
 
                 <label class="option">
@@ -850,7 +850,7 @@
                         name="pregunta2"
                         value="b"
                     >
-                    Ir a cenar
+                    Take That
                 </label>
 
                 <label class="option">
@@ -859,7 +859,7 @@
                         name="pregunta2"
                         value="c"
                     >
-                    Dar un paseo
+                    Estopa
                 </label>
 
                 <label class="option">
@@ -868,7 +868,7 @@
                         name="pregunta2"
                         value="d"
                     >
-                    Ir de viaje
+                    Back Street Boys
                 </label>
 
             </div>
@@ -879,7 +879,7 @@
         <div class="question">
 
             <h3>
-                3. ¿Cuál es mi mayor vicio?
+                3. ¿Cuál es tu comida favorita?
             </h3>
 
             <div class="options">
@@ -890,7 +890,7 @@
                         name="pregunta3"
                         value="a"
                     >
-                    Dormir
+                    Donut de chocolate
                 </label>
 
                 <label class="option">
@@ -899,7 +899,7 @@
                         name="pregunta3"
                         value="b"
                     >
-                    Comer
+                    Cereales nocturnos
                 </label>
 
                 <label class="option">
@@ -908,7 +908,7 @@
                         name="pregunta3"
                         value="c"
                     >
-                    Videojuegos
+                    Pistacho
                 </label>
 
                 <label class="option">
@@ -917,7 +917,7 @@
                         name="pregunta3"
                         value="d"
                     >
-                    Compras
+                    Bocadillo de salchichon
                 </label>
 
             </div>
@@ -928,7 +928,7 @@
         <div class="question">
 
             <h3>
-                4. ¿Qué lugar elegiría para pasar unas vacaciones?
+                4. ¿Que día fue tu boda?
             </h3>
 
             <div class="options">
@@ -939,7 +939,7 @@
                         name="pregunta4"
                         value="a"
                     >
-                    La playa 🏖️
+                    13/12
                 </label>
 
                 <label class="option">
@@ -948,7 +948,7 @@
                         name="pregunta4"
                         value="b"
                     >
-                    La montaña 🏔️
+                    10/11
                 </label>
 
                 <label class="option">
@@ -957,7 +957,7 @@
                         name="pregunta4"
                         value="c"
                     >
-                    Una gran ciudad 🌆
+                    09/10
                 </label>
 
                 <label class="option">
@@ -966,7 +966,7 @@
                         name="pregunta4"
                         value="d"
                     >
-                    Un pueblo tranquilo 🌳
+                    05/07
                 </label>
 
             </div>
@@ -977,7 +977,7 @@
         <div class="question">
 
             <h3>
-                5. ¿Qué prefiero?
+                5. ¿Cual es tu mayor adicción en el mundo?
             </h3>
 
             <div class="options">
@@ -988,7 +988,7 @@
                         name="pregunta5"
                         value="a"
                     >
-                    Una película 🎬
+                    Comer pad thai
                 </label>
 
                 <label class="option">
@@ -997,7 +997,7 @@
                         name="pregunta5"
                         value="b"
                     >
-                    Una serie 📺
+                    Las películas chinas hechas con ia
                 </label>
 
                 <label class="option">
@@ -1006,7 +1006,7 @@
                         name="pregunta5"
                         value="c"
                     >
-                    Un concierto 🎵
+                    El zumba
                 </label>
 
                 <label class="option">
@@ -1015,7 +1015,7 @@
                         name="pregunta5"
                         value="d"
                     >
-                    Un videojuego 🎮
+                    Hacer planetas con lana
                 </label>
 
             </div>
