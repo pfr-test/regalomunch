@@ -2104,38 +2104,32 @@ const fotos = [
 
     {
         id: 1,
-        imagen: "https://raw.githubusercontent.com/pfr-test/regalomunch/main/foto1.jpg",
-        titulo: "Recuerdo 1"
+        imagen: "https://raw.githubusercontent.com/pfr-test/regalomunch/main/foto1.jpg"
     },
 
     {
         id: 2,
-        imagen: "https://raw.githubusercontent.com/pfr-test/regalomunch/main/foto2.jpg",
-        titulo: "Recuerdo 2"
+        imagen: "https://raw.githubusercontent.com/pfr-test/regalomunch/main/foto2.jpg"
     },
 
     {
         id: 3,
-        imagen: "https://raw.githubusercontent.com/pfr-test/regalomunch/main/foto3.jpg",
-        titulo: "Recuerdo 3"
+        imagen: "https://raw.githubusercontent.com/pfr-test/regalomunch/main/foto3.jpg"
     },
 
     {
         id: 4,
-        imagen: "https://raw.githubusercontent.com/pfr-test/regalomunch/main/foto4.jpg",
-        titulo: "Recuerdo 4"
+        imagen: "https://raw.githubusercontent.com/pfr-test/regalomunch/main/foto4.jpg"
     },
 
     {
         id: 5,
-        imagen: "https://raw.githubusercontent.com/pfr-test/regalomunch/main/foto5.jpg",
-        titulo: "Recuerdo 5"
+        imagen: "https://raw.githubusercontent.com/pfr-test/regalomunch/main/foto5.jpg"
     },
 
     {
         id: 6,
-        imagen: "https://raw.githubusercontent.com/pfr-test/regalomunch/main/foto6.jpg",
-        titulo: "Recuerdo 6"
+        imagen: "https://raw.githubusercontent.com/pfr-test/regalomunch/main/foto6.jpg"
     }
 
 ];
