@@ -1372,7 +1372,7 @@
 
         <div class="final-image-wrapper">
             <img
-                src="https://raw.githubusercontent.com/pfr-test/regalomunch/main/final.jpg"
+                src="https://raw.githubusercontent.com/pfr-test/regalomunch/main/final.png"
                 alt="Nuestra foto"
             >
         </div>
