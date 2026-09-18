@@ -1191,7 +1191,7 @@
         <div class="answer-question">
 
             <h3>
-                1. ¿En qué ciudad nos conocimos?
+                1. ¿Película ganadora de los oscar la cual es tu favorita de este año ?
             </h3>
 
             <input
@@ -1208,7 +1208,7 @@
         <div class="answer-question">
 
             <h3>
-                2. ¿Cuál fue nuestra primera película juntos?
+                2. ¿Nombre del famoso actor alemán sarasilla por el que tenías un canal de yt?
             </h3>
 
             <input
@@ -1225,7 +1225,7 @@
         <div class="answer-question">
 
             <h3>
-                3. ¿Cuál es mi color favorito?
+                3. ¿Año en el que visitamos un desierto?
             </h3>
 
             <input
@@ -1242,7 +1242,7 @@
         <div class="answer-question">
 
             <h3>
-                4. ¿Cuál es nuestro lugar favorito?
+                4. ¿Nombre de la parte del cuerpo oculta en la ciudad de londres?
             </h3>
 
             <input
@@ -2028,13 +2028,13 @@
 
     const respuestasPrueba3 = {
 
-        respuesta1: "barcelona",
+        respuesta1: "Una batalla tras otra",
 
-        respuesta2: "toy story",
+        respuesta2: "Jo Weil",
 
-        respuesta3: "azul",
+        respuesta3: "2020",
 
-        respuesta4: "paris"
+        respuesta4: "Nariz"
 
     };
 
