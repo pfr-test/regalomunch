@@ -633,6 +633,70 @@
 
 
         /* =====================================================
+           PRUEBA 5 - PÁGINA FINAL (FELICES 50)
+        ===================================================== */
+
+        #prueba5 {
+            display: none;
+            text-align: center;
+        }
+
+        .final-hearts {
+            font-size: 32px;
+            letter-spacing: 10px;
+            margin-bottom: 10px;
+            animation: latido 1.4s ease-in-out infinite;
+        }
+
+        @keyframes latido {
+
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.12);
+            }
+
+        }
+
+        .final-title {
+            font-size: clamp(40px, 9vw, 72px);
+            font-weight: 900;
+            color: #e75480;
+            margin: 0 0 8px 0;
+            line-height: 1.05;
+        }
+
+        .final-subtitle {
+            color: #666;
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 480px;
+            margin: 0 auto 30px auto;
+        }
+
+        .final-image-wrapper {
+            display: flex;
+            justify-content: center;
+        }
+
+        .final-image-wrapper img {
+            width: 100%;
+            max-width: 480px;
+            max-height: 480px;
+
+            object-fit: cover;
+
+            border-radius: 20px;
+
+            border: 6px solid #ffe1e8;
+
+            box-shadow: 0 15px 35px rgba(231, 84, 128, 0.35);
+        }
+
+
+        /* =====================================================
            RESPONSIVE
         ===================================================== */
 
@@ -1286,6 +1350,32 @@
         >
             🎁 Descubrir el regalo
         </button>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PRUEBA 5 - PÁGINA FINAL
+    ===================================================== -->
+
+    <section id="prueba5">
+
+        <div class="final-hearts">❤️❤️❤️</div>
+
+        <h1 class="final-title">¡Felices 50!</h1>
+
+        <p class="final-subtitle">
+            Cinco pruebas superadas para llegar hasta aquí.
+            Gracias por cada uno de estos años ❤️
+        </p>
+
+        <div class="final-image-wrapper">
+            <img
+                src="https://raw.githubusercontent.com/pfr-test/regalomunch/main/final.jpg"
+                alt="Nuestra foto"
+            >
+        </div>
 
     </section>
 
@@ -2849,9 +2939,32 @@ function comprobarOrden() {
 
 function regaloFinal() {
 
-    alert(
-        "🎁 ¡HAS SUPERADO TODAS LAS PRUEBAS! ❤️"
-    );
+    /*
+        Ocultar Prueba 4.
+    */
+
+    document.getElementById(
+        "prueba4"
+    ).style.display = "none";
+
+
+    /*
+        Mostrar la página final.
+    */
+
+    document.getElementById(
+        "prueba5"
+    ).style.display = "block";
+
+
+    /*
+        Subir al principio de la página.
+    */
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 
 }
 
